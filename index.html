@@ -1,5 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>a-zero.ai</title>
-
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
 <style id="az-style">
   :root {
     --ground: #FAFAFB;
@@ -119,6 +126,20 @@
   .nav-cta:hover { border-color: var(--ink); background: var(--surface); }
   @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
 
+  .article-shell { max-width: 760px; margin: 0 auto; }
+  .article-shell .article-kicker { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .12em; color: var(--accent); text-transform: uppercase; }
+  .article-shell h1 { font-size: clamp(2.2rem, 1.6rem + 2.6vw, 4rem); margin-top: .8rem; }
+  .article-meta { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 1.2rem; font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .06em; color: var(--muted); }
+  .article-body { margin-top: 2.2rem; color: var(--ink-soft); font-size: 1.08rem; }
+  .article-body p { margin: 0 0 1.5rem; }
+  .article-body h2 { color: var(--ink); font-size: clamp(1.4rem, 1.2rem + .8vw, 2rem); margin: 2.3rem 0 1rem; }
+  .article-body blockquote {
+    margin: 2rem 0; padding: 1.4rem 1.6rem; border-left: 2px solid var(--accent); background: var(--surface); color: var(--ink); font-size: 1.06rem;
+  }
+  .article-body strong { color: var(--ink); }
+  .article-body ul { margin: 1.2rem 0 1.75rem; padding-left: 1.2rem; }
+  .article-body li { margin-bottom: .7rem; }
+
   /* ---------- hero ---------- */
   .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
   .hero-grid {
@@ -183,20 +204,14 @@
   /* ---------- spectrum rows ---------- */
   .spec { list-style: none; margin: 0; padding: 0; }
   .spec li { border-top: 1px solid var(--line); }
-  .spec a.row {
-    display: grid; grid-template-columns: 0.85fr 1.3fr auto; gap: clamp(1.2rem, 3vw, 3rem);
+  .spec .row {
+    display: grid; grid-template-columns: 0.85fr 1.3fr; gap: clamp(1.2rem, 3vw, 3rem);
     align-items: start; padding-block: clamp(1.6rem, 3.5vw, 2.6rem);
-    text-decoration: none; transition: background .2s; padding-inline: clamp(.6rem, 1.5vw, 1.2rem);
+    padding-inline: clamp(.6rem, 1.5vw, 1.2rem);
   }
-  @media (max-width: 820px) { .spec a.row { grid-template-columns: 1fr; gap: .9rem; } }
-  .spec a.row:hover { background: var(--surface); }
+  @media (max-width: 820px) { .spec .row { grid-template-columns: 1fr; gap: .9rem; } }
   .spec h3 { font-size: var(--step-1); margin-top: .5rem; }
-  .spec .desc { color: var(--ink-soft); margin: 0 0 .8rem; line-height: 1.55; }
-  .spec .for { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .06em; color: var(--muted); }
-  .spec .for b { color: var(--accent); font-weight: 500; }
-  .spec .go { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .08em; color: var(--accent); align-self: center; white-space: nowrap; }
-  .spec a.row:hover .go { color: var(--ink); }
-  .tinted .spec a.row:hover { background: var(--surface-2); }
+  .spec .desc { color: var(--ink-soft); margin: 0; line-height: 1.55; }
 
   /* ---------- service page scaffold ---------- */
   .svc-hero { border-bottom: 1px solid var(--line); padding-block: clamp(3rem, 7vw, 5.5rem); }
@@ -222,7 +237,7 @@
   }
   .caps b { color: var(--ink); font-weight: 500; }
 
-  /* card grid (workshop deliverables) */
+  /* card grid (consulting deliverables) */
   .offer-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
   @media (max-width: 780px) { .offer-list { grid-template-columns: 1fr; } }
   .offer-item { background: var(--ground); padding: clamp(1.6rem, 3vw, 2.4rem); display: flex; flex-direction: column; gap: 0.9rem; }
@@ -296,7 +311,7 @@
   .foot .meta { font-family: var(--f-sans); font-size: 0.92rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; }
   .foot .meta a { color: var(--ink-soft); text-decoration: none; }
   .foot .meta a:hover { color: var(--ink); }
-  /* ---------- in-place editor — only ever shown to people who can edit this artifact ---------- */
+  /* ---------- in-place editor ---------- */
   .az-editing { padding-block-end: 132px; }
   .az-editing [data-az-edit] { cursor: text; outline: 1px dashed transparent; outline-offset: 4px; border-radius: 2px; transition: outline-color .15s; }
   .az-editing [data-az-edit]:hover { outline-color: var(--accent-soft); }
@@ -360,18 +375,18 @@
   <div class="wrap nav">
     <a class="brand" href="#/" aria-label="a-zero.ai home">
       <svg class="mark" viewBox="0 0 120 88" aria-hidden="true">
-        <polygon points="6,14 112,26 70,44" fill="var(--ink)"/>
-        <polygon points="6,14 70,44 40,52" fill="var(--muted)"/>
-        <polygon points="112,26 70,44 58,82" fill="var(--ink-soft)"/>
-        <polygon points="70,44 58,82 40,52" fill="var(--line-strong)"/>
+        <polygon points="6,14 112,26 70,44" fill="var(--ink)"></polygon>
+        <polygon points="6,14 70,44 40,52" fill="var(--muted)"></polygon>
+        <polygon points="112,26 70,44 58,82" fill="var(--ink-soft)"></polygon>
+        <polygon points="70,44 58,82 40,52" fill="var(--line-strong)"></polygon>
       </svg>
       <span class="word">a-zero<span class="tld">.ai</span></span>
     </a>
     <nav class="nav-links" aria-label="primary">
+      <a href="#/blog">reports</a>
       <a href="#/workshops">workshops</a>
-      <a href="#/agents">agentic building</a>
       <a href="#/about">about</a>
-      <a class="nav-cta" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20let's%20talk">let's talk</a>
+      <a class="nav-cta" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20consultation">request a consultation</a>
     </nav>
   </div>
 </header>
@@ -383,48 +398,47 @@
     <div class="hero-bg" aria-hidden="true">
       <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
         <g fill="none" stroke="var(--line)" stroke-width="1">
-          <polygon points="120,80 420,20 300,240"/>
-          <polygon points="1050,120 1180,360 860,300"/>
-          <polygon points="200,520 520,600 340,420"/>
-          <polygon points="900,540 1200,480 1120,600"/>
+          <polygon points="120,80 420,20 300,240"></polygon>
+          <polygon points="1050,120 1180,360 860,300"></polygon>
+          <polygon points="200,520 520,600 340,420"></polygon>
+          <polygon points="900,540 1200,480 1120,600"></polygon>
         </g>
       </svg>
     </div>
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">ai consulting</span>
-        <h1>from zero <br><span class="dim">to</span> agentic.</h1>
-        <p class="lead">AI consulting at two depths — from your team's first hands-on hours with AI, to fully deployed agentic systems running inside your operation, on infrastructure you own.</p>
+        <span class="eyebrow">data governance · ai risk · security advisory</span>
+        <h1>data governance<br><span class="dim">in the age of AI.</span></h1>
+        <p class="lead">Advisory on data exposure, intellectual property, and key considerations for secure AI usage.</p>
         <div class="cta-row">
-          <a class="btn" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20let's%20talk">let's talk <span class="arrow">→</span></a>
-          <a class="btn ghost" href="#spectrum" data-goto="spectrum">see the services</a>
+          <a class="btn" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20consultation">request a consultation <span class="arrow">→</span></a>
+          <a class="btn ghost" href="#/blog">reports</a>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
         <svg viewBox="0 0 460 320">
           <defs>
             <linearGradient id="fTop" x1="0" y1="0" x2="1" y2="0.5">
-              <stop offset="0" stop-color="var(--surface-2)"/><stop offset="1" stop-color="var(--accent-soft)"/>
+              <stop offset="0" stop-color="var(--surface-2)"></stop><stop offset="1" stop-color="var(--accent-soft)"></stop>
             </linearGradient>
             <linearGradient id="fMid" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="var(--muted)"/><stop offset="1" stop-color="var(--ink-soft)"/>
+              <stop offset="0" stop-color="var(--muted)"></stop><stop offset="1" stop-color="var(--ink-soft)"></stop>
             </linearGradient>
             <linearGradient id="fLow" x1="0" y1="0" x2="0.6" y2="1">
-              <stop offset="0" stop-color="var(--ink-soft)"/><stop offset="1" stop-color="var(--ink)"/>
+              <stop offset="0" stop-color="var(--ink-soft)"></stop><stop offset="1" stop-color="var(--ink)"></stop>
             </linearGradient>
             <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="26" stdDeviation="22" flood-color="#000" flood-opacity="0.16"/>
+              <feDropShadow dx="0" dy="26" stdDeviation="22" flood-color="#000" flood-opacity="0.16"></feDropShadow>
             </filter>
           </defs>
-          <path class="trail" d="M40,286 C150,286 150,150 300,120" fill="none"
-                stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <path class="trail" d="M40,286 C150,286 150,150 300,120" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"></path>
           <g class="plane-anim">
             <g class="bobber" filter="url(#soft)">
-              <polygon class="facet" points="60,150 418,70 250,150" fill="url(#fTop)"/>
-              <polygon class="facet" points="60,150 250,150 170,196" fill="url(#fMid)"/>
-              <polygon class="facet" points="418,70 250,150 214,250" fill="url(#fMid)"/>
-              <polygon class="facet" points="250,150 214,250 170,196" fill="url(#fLow)"/>
-              <line x1="418" y1="70" x2="214" y2="250" stroke="var(--ground)" stroke-width="1.4" opacity="0.35"/>
+              <polygon class="facet" points="60,150 418,70 250,150" fill="url(#fTop)"></polygon>
+              <polygon class="facet" points="60,150 250,150 170,196" fill="url(#fMid)"></polygon>
+              <polygon class="facet" points="418,70 250,150 214,250" fill="url(#fMid)"></polygon>
+              <polygon class="facet" points="250,150 214,250 170,196" fill="url(#fLow)"></polygon>
+              <line x1="418" y1="70" x2="214" y2="250" stroke="var(--ground)" stroke-width="1.4" opacity="0.35"></line>
             </g>
           </g>
         </svg>
@@ -436,65 +450,45 @@
   <section class="bordered" id="spectrum">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">the services</span>
-        <h2>wherever your company stands.</h2>
-        <p>Two services at two depths of engagement — workshops for the people doing the work, and build engagements for operations ready to own agentic systems in production.</p>
+        <span class="eyebrow">advisory</span>
+        <h2>bring in AI clarity </h2>
+        <p>We assess the changes in your enterprise sector to unravel key insights.</p>
       </div>
       <ul class="spec">
         <li>
-          <a class="row" href="#/workshops">
+          <div class="row">
             <div>
-              <span class="eyebrow">01 · workshops</span>
-              <h3>Start with understanding.</h3>
+              <span class="eyebrow">01 · Landscape Analysis</span>
+              <h3>Understand the new landscape.</h3>
             </div>
             <div>
-              <p class="desc">Two hands-on workshops. <b>AI mastery</b> — tool usage, integration, and building with generative AI. <b>Data strategy</b> — your data is the product: responsible management, the tools that connect models to it, and ownership that outlasts the context window. No technical background assumed.</p>
-              <span class="for">for · <b>employees &amp; teams putting AI into daily work</b></span>
+              <p class="desc">How AI is reshaping your industry and the operations it now makes possible, assessed against your organization's position.</p>
             </div>
-            <span class="go">explore →</span>
-          </a>
+          </div>
         </li>
         <li>
-          <a class="row" href="#/agents">
+          <div class="row">
             <div>
-              <span class="eyebrow">02 · agentic building</span>
-              <h3>Build the capability.</h3>
+              <span class="eyebrow">02 · Strategic Implications</span>
+              <h3>Translate intelligence into priorities.</h3>
             </div>
             <div>
-              <p class="desc">The deep end: real agentic capability designed, built, and integrated into your operation — embedded in your business the way a forward-deployed engineer works, on infrastructure you own.</p>
-              <span class="for">for · <b>companies ready to own agentic systems in production</b></span>
+              <p class="desc">Turn the findings into a ranked set of decisions: what to act on now, what to monitor, and what can wait, with the tradeoffs made explicit.</p>
             </div>
-            <span class="go">explore →</span>
-          </a>
+          </div>
+        </li>
+        <li>
+          <div class="row">
+            <div>
+              <span class="eyebrow">03 · Data Management</span>
+              <h3>Set terms for your data.</h3>
+            </div>
+            <div>
+              <p class="desc">Threat surface are changing. We map where your data and IP meet these exposures, so you can set the terms on how you utilize which AI system and manage your data.</p>
+            </div>
+          </div>
         </li>
       </ul>
-    </div>
-  </section>
-
-  <!-- OWNERSHIP BAND -->
-  <section class="band">
-    <svg class="tris" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="bt1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="var(--band-line)"/><stop offset="1" stop-color="var(--band)"/>
-        </linearGradient>
-        <linearGradient id="bt2" x1="0" y1="0" x2="0.4" y2="1">
-          <stop offset="0" stop-color="var(--band-muted)" stop-opacity="0.4"/><stop offset="1" stop-color="var(--band-line)"/>
-        </linearGradient>
-      </defs>
-      <g stroke="var(--band-ink)" stroke-opacity="0.06" stroke-width="1" stroke-linejoin="round">
-        <polygon points="70,140 250,80 205,300" fill="url(#bt1)"/>
-        <polygon points="205,300 250,80 380,255" fill="url(#bt2)"/>
-        <polygon points="30,360 205,300 120,480" fill="url(#bt1)"/>
-        <polygon points="1370,110 1195,175 1305,335" fill="url(#bt1)"/>
-        <polygon points="1305,335 1195,175 1090,320" fill="url(#bt2)"/>
-        <polygon points="1410,370 1305,335 1370,500" fill="url(#bt1)"/>
-      </g>
-    </svg>
-    <div class="wrap">
-      <span class="eyebrow" style="color:var(--accent-soft); justify-content:center; display:flex;">built with you</span>
-      <h2>understanding first. speed follows.</h2>
-      <p>Whatever the depth of engagement, the constant is the same: we build alongside your people, on infrastructure you control — so the system, the data, and the know-how all stay yours.</p>
     </div>
   </section>
 
@@ -502,136 +496,62 @@
   <section class="contact" id="contact">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow" style="justify-content:center; display:flex;">get started</span>
-        <h2>start at zero.</h2>
-        <p>Tell us where your company stands. We'll tell you which of the two doors is yours.</p>
-        <a class="btn" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20let's%20talk">let's talk <span class="arrow">→</span></a>
+        <span class="eyebrow" style="justify-content:center; display:flex;">in confidence</span>
+        <h2>Describe the situation.</h2>
+        <p>Engagements begin with a short, confidential conversation. Describe your inquiries regarding data governance, AI threats and decision support.</p>
+        <a class="btn" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20in%20confidence">start a conversation <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 </main>
 
 <!-- ============================== WORKSHOPS ============================== -->
-<main id="view-workshops" hidden>
+<main id="view-workshops" hidden="">
 
   <section class="svc-hero">
     <div class="wrap">
       <a class="crumb" href="#/">← a-zero.ai</a>
-      <span class="eyebrow" style="display:flex;">01 · workshops</span>
-      <h1>Understanding is the deliverable.</h1>
-      <p class="lead">Two hands-on workshops for the people who'll actually use AI — general employees, teams, individuals. No technical background assumed. The first is a workshop for understanding and clarity around AI usage. The second is about the asset that decides what any of it is worth — your data.</p>
+      <span class="eyebrow" style="display:flex;">Workshops</span>
+      <h1>Understanding AI Systems</h1>
+      <p class="lead">Develop a practical understanding of AI system capabilities, limitations, data flows, and the governance considerations that shape powerful and responsible use for your organization. For leadership and teams that need to understand how to make the most of AI with security in mind. No technical experience assumed.</p>
       <div class="who">
-        <div><b>who it's for</b>employees &amp; teams working with AI day to day</div>
-        <div><b>format</b>hands-on, on your tools, with your own material</div>
-        <div><b>where it sits</b>the most accessible way to work with us</div>
+        <div><b>For</b>Leaders and teams evaluating AI use</div>
+        <div><b>Focus</b>Systems, data, risk, and governance</div>
+        <div><b>Outcome</b>A shared basis for informed decisions</div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">two workshops</span>
-        <h2>one makes AI clear. one makes your data count.</h2>
-        <p>Take either on its own, or both in sequence — clarity first, then the data strategy that decides what your AI is actually working with.</p>
-      </div>
-      <ul class="spec">
-        <li>
-          <a class="row" href="#/workshops" data-scroll="ai-mastery">
-            <div>
-              <span class="eyebrow">workshop 01 · ai mastery</span>
-              <h3>AI is a clarity problem.</h3>
-            </div>
-            <div>
-              <p class="desc">Tool usage, integration into the work your team already runs, and building with generative AI — moving from using what's on your desk to assembling your own.</p>
-              <span class="for">for · <b>anyone whose daily work AI could carry</b></span>
-            </div>
-            <span class="go">read on →</span>
-          </a>
-        </li>
-        <li>
-          <a class="row" href="#/workshops" data-scroll="data-strategy">
-            <div>
-              <span class="eyebrow">workshop 02 · data strategy</span>
-              <h3>Your data is the product.</h3>
-            </div>
-            <div>
-              <p class="desc">Responsible AI for data management, the tools that connect a model to what you own — MCPs, APIs, RAG — and context engineering: ownership that outlasts the context window.</p>
-              <span class="for">for · <b>teams whose data is the business</b></span>
-            </div>
-            <span class="go">read on →</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- WORKSHOP 01 -->
-  <section class="tinted track" id="ai-mastery">
+  <section class="tinted track">
     <div class="wrap">
       <div class="track-head">
-        <span class="eyebrow">workshop 01 · ai mastery</span>
-        <h2>AI is not a tooling problem. It's a clarity problem.</h2>
-        <p>An introductory, hands-on workshop for the people who'll actually use AI — general employees, teams, individuals. No technical background assumed. The tools are already on your desks; this workshop supplies the understanding that turns them into working advantage.</p>
+        <span class="eyebrow">Workshop Structure</span>
+        <h2>A practical understanding of Generative AI. </h2>
+        <p>Participants examine how AI systems produce outputs, what information they rely on, and where uncertainty and exposure enter. The workshop moves from system fundamentals to information flows, then to evaluation and oversight, followed up by solving organizational use cases with existing internal tools.</p>
         <div class="who">
-          <div><b>who it's for</b>anyone whose daily work AI could carry</div>
-          <div><b>format</b>hands-on, on the tools your team already has</div>
+          <div><b>Format</b>Facilitated hands on workshop grounded in organizational use cases</div>
+          <div><b>Participants</b>Decision-makers and multidisciplinary teams</div>
         </div>
       </div>
       <div class="offer-list">
         <article class="offer-item">
-          <span class="k">tool usage</span>
-          <h3>Output you can stand behind</h3>
-          <p>A working model of AI with the jargon taken out — LLMs, generative AI, prompting, hallucinations — then hands-on, on the tools your team already has. Asking precisely, verifying what comes back, catching errors before they cost you. Right answers instead of confident ones.</p>
+          <span class="k">01 · System Fundamentals</span>
+          <h3>Capabilities and limitations</h3>
+          <p>Build a working model of how AI systems generate outputs, where their capabilities are useful, and how limitations and uncertainty affect reliance on them.</p>
         </article>
         <article class="offer-item">
-          <span class="k">integration</span>
-          <h3>The highest-leverage moves, per task</h3>
-          <p>For each kind of work your team runs, where AI helps most — and where it doesn't. Your team leaves with the leverage map for its own tasks and concrete next steps, not enthusiasm.</p>
+          <span class="k">02 · Data and Context</span>
+          <h3>Data, context, and exposure</h3>
+          <p>Trace how information enters a system and is used; identify where confidentiality, intellectual property, ownership, and access require attention.</p>
         </article>
         <article class="offer-item">
-          <span class="k">building with genai</span>
-          <h3>From using it to building with it</h3>
-          <p>The step most teams never take: assembling their own. Custom assistants, prompt chains, and small automations wired to the work already in front of them — so your team stops waiting for a vendor to ship the feature it needs. No engineering background required.</p>
+          <span class="k">03 · Evaluation and Oversight</span>
+          <h3>Evidence before reliance</h3>
+          <p>Determine how to evaluate system behavior, where human review remains necessary, and how responsibilities should be assigned before and after implementation.</p>
         </article>
       </div>
       <div class="ws-foot">
-        <em style="font-style:normal;">By the end, your team talks about AI in its own words — and can tell substance from sales noise.</em>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORKSHOP 02 -->
-  <section class="track" id="data-strategy">
-    <div class="wrap">
-      <div class="track-head">
-        <span class="eyebrow">workshop 02 · data strategy</span>
-        <h2>Your data is the product.</h2>
-        <p>A hands-on workshop for the teams whose data is the business. Models arrive and get replaced; the asset underneath them is yours, and most companies treat it as exhaust. This workshop covers what may leave the building, the plumbing that lets a model reach your data without swallowing it, and how to hold your knowledge in systems that keep compounding.</p>
-        <div class="who">
-          <div><b>who it's for</b>teams whose data is the business</div>
-          <div><b>format</b>hands-on, on your own sources and systems</div>
-        </div>
-      </div>
-      <div class="offer-list">
-        <article class="offer-item">
-          <span class="k">responsible use</span>
-          <h3>What can go where, and why</h3>
-          <p>Data management under AI: classification, consent, retention — and what actually leaves the building when someone pastes a client file into a chat box. Your team learns the questions to ask before data moves, and how to answer them once as policy instead of case by case.</p>
-        </article>
-        <article class="offer-item">
-          <span class="k">the data tools</span>
-          <h3>MCPs, APIs, RAG</h3>
-          <p>How a model actually reaches your data. MCP servers for connecting tools and sources to models, APIs for the systems you already run, retrieval for the documents you hold. What each one is for, what each costs you in control, and which to reach for per job.</p>
-        </article>
-        <article class="offer-item">
-          <span class="k">context engineering</span>
-          <h3>Ownership outside the context window</h3>
-          <p>The context window forgets, and it was never yours. Engineering context deliberately — what goes in front of a model, when, and from where — so the knowledge lives in stores you own and outlives any single session, model, or vendor.</p>
-        </article>
-      </div>
-      <div class="ws-foot">
-        <em style="font-style:normal;">By the end, your data has a strategy: written down, enforced by plumbing your team understands, and treated as the asset it is.</em>
+        <em style="font-style:normal;">The outcome objective is a shared, accurate understanding that supports sound organizational decisions around AI implementation.</em>
       </div>
     </div>
   </section>
@@ -639,27 +559,26 @@
   <section class="band">
     <div class="wrap">
       <span class="eyebrow" style="color:var(--accent-soft); justify-content:center; display:flex;">get started</span>
-      <h2>built around how your team works today.</h2>
-      <p>Tell us how your team works and which workshop fits. We'll build it around your tools, your workflows, your questions.</p>
-      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20workshops">book a workshop <span class="arrow">→</span></a></p>
+      <h2>Develop a sound basis for AI decisions.</h2>
+      <p>Discuss a workshop for your leadership and technical teams.</p>
+      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20AI%20systems%20workshop">Request workshop details <span class="arrow">→</span></a></p>
     </div>
   </section>
 
 </main>
 
-<!-- ============================== AGENTIC BUILDING ============================== -->
-<main id="view-agents" hidden>
+<template>
 
   <section class="svc-hero">
     <div class="wrap">
       <a class="crumb" href="#/">← a-zero.ai</a>
-      <span class="eyebrow" style="display:flex;">02 · agentic building</span>
-      <h1>custom agents, on infrastructure you own.</h1>
-      <p class="lead">This is the deep end: real agentic capability designed, built, and integrated into your company's operations. We work embedded in your business — the way a forward-deployed engineer works — not from a slide deck. It is vast, complex work, and it is what actually moves an operation.</p>
+      <span class="eyebrow" style="display:flex;">data governance consulting</span>
+      <h1>Make data accountable, protected, and useful.</h1>
+      <p class="lead">We help organizations establish clear data ownership, classification, access, and stewardship. The work connects policy to day-to-day decisions, so teams can protect sensitive information, meet obligations, and use data with confidence.</p>
       <div class="who">
-        <div><b>who it's for</b>companies ready to own agentic systems in production</div>
-        <div><b>what it takes</b>real budget, real time, sustained access to your operation</div>
-        <div><b>at scale</b>a vetted engineering team deployed alongside us</div>
+        <div><b>who it's for</b>organizations clarifying data accountability and controls</div>
+        <div><b>starting point</b>data assets, obligations, risks, and current practices</div>
+        <div><b>outcome</b>practical governance guidance teams can maintain</div>
       </div>
     </div>
   </section>
@@ -667,18 +586,18 @@
   <section>
     <div class="wrap split">
       <div>
-        <span class="eyebrow">what we build</span>
-        <h2>we don't hand you a tool. we build your capability.</h2>
-        <p class="tagline" style="font-family:var(--f-mono); font-size:var(--step--1); letter-spacing:.14em; color:var(--muted); margin-top:1rem;">unify · deploy · enable</p>
+        <span class="eyebrow">areas of focus</span>
+        <h2>Governance designed around the data and the people responsible for it.</h2>
+        <p class="tagline" style="font-family:var(--f-mono); font-size:var(--step--1); letter-spacing:.14em; color:var(--muted); margin-top:1rem;">classify · assign · govern</p>
       </div>
       <div>
         <ul class="caps">
-          <li><span><b>Data unification</b> — one foundation your agents and your people actually work from.</span></li>
-          <li><span><b>Purpose-built agents per role</b> — marketing, R&amp;D, operations: the work each team actually does.</span></li>
-          <li><span><b>Deployed on infrastructure you own</b> — your data and control stay on your side.</span></li>
-          <li><span><b>Safeguards and governance</b> built in from day one, not bolted on.</span></li>
-          <li><span><b>Team training</b> — your people learn to understand, govern, and extend the system.</span></li>
-          <li><span><b>Clean handover</b> — no black box, no lock-in; a team that thinks in systems.</span></li>
+          <li><span><b>Data classification</b> — establish useful categories based on sensitivity, business value, and obligations.</span></li>
+          <li><span><b>Ownership and stewardship</b> — clarify who is accountable for data quality, access, and appropriate use.</span></li>
+          <li><span><b>Access and use</b> — define practical rules for who can use data, for which purposes, and under what conditions.</span></li>
+          <li><span><b>Policy and controls</b> — align data practices with organizational commitments, legal requirements, and risk tolerance.</span></li>
+          <li><span><b>Governance operating model</b> — set decision rights, escalation paths, and review responsibilities.</span></li>
+          <li><span><b>Implementation guidance</b> — translate governance principles into clear recommendations, priorities, and next steps.</span></li>
         </ul>
       </div>
     </div>
@@ -688,17 +607,17 @@
     <div class="wrap split">
       <div>
         <span class="eyebrow">the engagement</span>
-        <h2>scoped precisely before you commit.</h2>
+        <h2>Make governance clear enough to use.</h2>
         <div class="body" style="margin-top:1.2rem;">
-          <p>This is the most involved engagement we offer. Integrating agents into a real operation touches data, workflows, security, and people — so it demands resources to match, and honesty about that up front.</p>
-          <p><strong>The scope comes first, priced and bounded</strong> — you know what you're committing to before you commit to it.</p>
+          <p>Governance has to work across real roles, systems, and decisions. We assess current practices, identify gaps and points of friction, then shape guidance that fits the organization rather than adding process for its own sake.</p>
+          <p><strong>The result is clear accountability and practical direction</strong> — not a policy document disconnected from the work.</p>
         </div>
       </div>
       <ol class="steps">
-        <li><span class="n">01 · scope</span><p><b>Inside your operation.</b> We map the workflows, the data, and the constraints — and bound the build: what, how long, what it costs.</p></li>
-        <li><span class="n">02 · build</span><p><b>The system, on your infrastructure.</b> Agents designed and built for your workflows. At scale, a vetted engineering team works alongside us.</p></li>
-        <li><span class="n">03 · integrate</span><p><b>Wired into the real work.</b> Embedded with your teams until the agents run the workflows they were built for — not a demo, the actual operation.</p></li>
-        <li><span class="n">04 · enable</span><p><b>Your team takes the keys.</b> Training, governance, and handover — your people own, govern, and extend the system.</p></li>
+        <li><span class="n">01 · assess</span><p><b>Understand the current state.</b> Review data assets, existing policies, responsibilities, and obligations.</p></li>
+        <li><span class="n">02 · prioritize</span><p><b>Focus on material risks.</b> Identify unclear ownership, inconsistent classification, and access or use questions that need decisions.</p></li>
+        <li><span class="n">03 · design</span><p><b>Set practical rules.</b> Recommend categories, decision rights, controls, and stewardship practices suited to the organization.</p></li>
+        <li><span class="n">04 · guide</span><p><b>Give teams a path forward.</b> Present recommendations, sequencing, and responsibilities in a form leaders and teams can act on.</p></li>
       </ol>
     </div>
   </section>
@@ -706,8 +625,8 @@
   <section class="bordered">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">case studies</span>
-        <h2>built and running.</h2>
+        <span class="eyebrow">governance foundations</span>
+        <h2>Make the responsibilities visible.</h2>
       </div>
       <div class="cases">
         <article class="case">
@@ -715,33 +634,33 @@
             <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
               <defs>
                 <linearGradient id="cs1a" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="var(--surface-2)"/><stop offset="1" stop-color="var(--accent-soft)"/>
+                  <stop offset="0" stop-color="var(--surface-2)"></stop><stop offset="1" stop-color="var(--accent-soft)"></stop>
                 </linearGradient>
                 <linearGradient id="cs1b" x1="0" y1="0" x2="0.6" y2="1">
-                  <stop offset="0" stop-color="var(--muted)"/><stop offset="1" stop-color="var(--ink-soft)"/>
+                  <stop offset="0" stop-color="var(--muted)"></stop><stop offset="1" stop-color="var(--ink-soft)"></stop>
                 </linearGradient>
               </defs>
-              <rect width="400" height="260" fill="var(--surface)"/>
+              <rect width="400" height="260" fill="var(--surface)"></rect>
               <g stroke="var(--line)" stroke-width="1" fill="none">
-                <polygon points="20,40 150,10 110,120"/>
-                <polygon points="330,220 400,180 390,260"/>
+                <polygon points="20,40 150,10 110,120"></polygon>
+                <polygon points="330,220 400,180 390,260"></polygon>
               </g>
               <g>
-                <polygon points="120,50 290,38 300,200 130,214" fill="url(#cs1a)"/>
-                <polygon points="120,50 290,38 208,120" fill="var(--surface-2)" opacity="0.75"/>
-                <line x1="150" y1="95" x2="270" y2="88" stroke="var(--muted)" stroke-width="4" opacity="0.55"/>
-                <line x1="150" y1="120" x2="262" y2="114" stroke="var(--muted)" stroke-width="4" opacity="0.4"/>
-                <line x1="150" y1="145" x2="270" y2="139" stroke="var(--muted)" stroke-width="4" opacity="0.3"/>
-                <line x1="150" y1="170" x2="230" y2="166" stroke="var(--muted)" stroke-width="4" opacity="0.2"/>
-                <polygon points="255,140 335,96 300,208 268,196" fill="url(#cs1b)"/>
-                <polygon points="300,208 268,196 276,226" fill="var(--accent)"/>
+                <polygon points="120,50 290,38 300,200 130,214" fill="url(#cs1a)"></polygon>
+                <polygon points="120,50 290,38 208,120" fill="var(--surface-2)" opacity="0.75"></polygon>
+                <line x1="150" y1="95" x2="270" y2="88" stroke="var(--muted)" stroke-width="4" opacity="0.55"></line>
+                <line x1="150" y1="120" x2="262" y2="114" stroke="var(--muted)" stroke-width="4" opacity="0.4"></line>
+                <line x1="150" y1="145" x2="270" y2="139" stroke="var(--muted)" stroke-width="4" opacity="0.3"></line>
+                <line x1="150" y1="170" x2="230" y2="166" stroke="var(--muted)" stroke-width="4" opacity="0.2"></line>
+                <polygon points="255,140 335,96 300,208 268,196" fill="url(#cs1b)"></polygon>
+                <polygon points="300,208 268,196 276,226" fill="var(--accent)"></polygon>
               </g>
             </svg>
           </figure>
           <div class="case-body">
-            <span class="k">case study · applied model engineering</span>
-            <h3>A grant-writing assistant with a natural voice</h3>
-            <p>Engineered a production-grade writing assistant by fine-tuning LoRAs on a corpus of successful grant applications, automating research and proposal drafting while maintaining natural voice.</p>
+            <span class="k">classification &amp; access</span>
+            <h3>Know what data you hold and who can use it.</h3>
+            <p>Establish meaningful data categories, assess sensitivity, and define access expectations according to role, purpose, and risk.</p>
           </div>
         </article>
         <article class="case">
@@ -749,34 +668,34 @@
             <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
               <defs>
                 <linearGradient id="cs2a" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="var(--accent-soft)"/><stop offset="1" stop-color="var(--ink-soft)"/>
+                  <stop offset="0" stop-color="var(--accent-soft)"></stop><stop offset="1" stop-color="var(--ink-soft)"></stop>
                 </linearGradient>
               </defs>
-              <rect width="400" height="260" fill="var(--surface)"/>
+              <rect width="400" height="260" fill="var(--surface)"></rect>
               <g stroke="var(--line)" stroke-width="1" fill="none">
-                <polygon points="200,130 320,60 330,200"/>
-                <polygon points="200,130 80,50 60,180"/>
-                <polygon points="200,130 140,240 290,235"/>
+                <polygon points="200,130 320,60 330,200"></polygon>
+                <polygon points="200,130 80,50 60,180"></polygon>
+                <polygon points="200,130 140,240 290,235"></polygon>
               </g>
-              <polygon points="200,130 340,58 352,148" fill="url(#cs2a)" opacity="0.5"/>
+              <polygon points="200,130 340,58 352,148" fill="url(#cs2a)" opacity="0.5"></polygon>
               <g fill="var(--muted)">
-                <polygon points="84,52 100,44 96,64"/>
-                <polygon points="318,62 334,54 330,74"/>
-                <polygon points="62,178 78,170 74,190"/>
-                <polygon points="288,232 304,224 300,244"/>
-                <polygon points="142,238 158,230 154,250"/>
+                <polygon points="84,52 100,44 96,64"></polygon>
+                <polygon points="318,62 334,54 330,74"></polygon>
+                <polygon points="62,178 78,170 74,190"></polygon>
+                <polygon points="288,232 304,224 300,244"></polygon>
+                <polygon points="142,238 158,230 154,250"></polygon>
               </g>
               <g fill="var(--accent)">
-                <polygon points="192,120 216,116 210,142 188,138"/>
-                <polygon points="252,96 266,92 262,108"/>
-                <polygon points="150,180 164,176 160,192"/>
+                <polygon points="192,120 216,116 210,142 188,138"></polygon>
+                <polygon points="252,96 266,92 262,108"></polygon>
+                <polygon points="150,180 164,176 160,192"></polygon>
               </g>
             </svg>
           </figure>
           <div class="case-body">
-            <span class="k">case study · autonomous systems</span>
-            <h3>An R&amp;D engine that never sleeps</h3>
-            <p>Architected an autonomous R&amp;D engine using multi-agent feedback harnesses and integrated benchmarks to scan scientific literature, community developments and competitor activity, identifying niche growth opportunities with zero manual intervention.</p>
+            <span class="k">ownership &amp; stewardship</span>
+            <h3>Make accountability part of the model.</h3>
+            <p>Clarify data ownership, stewardship responsibilities, and decision rights so governance can be maintained as the organization changes.</p>
           </div>
         </article>
       </div>
@@ -800,77 +719,232 @@
   <section class="band">
     <div class="wrap">
       <span class="eyebrow" style="color:var(--accent-soft); justify-content:center; display:flex;">get started</span>
-      <h2>tell us the operation. we'll bound the build.</h2>
-      <p>A scoping conversation costs you an hour and commits you to nothing.</p>
-      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20agentic%20building">let's scope it <span class="arrow">→</span></a></p>
+      <h2>Bring us your data governance questions.</h2>
+      <p>We’ll help clarify the responsibilities, risks, and decisions that need attention.</p>
+      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20data%20governance">discuss governance <span class="arrow">→</span></a></p>
     </div>
   </section>
 
+</template>
+
+<!-- ============================== BLOG ============================== -->
+<main id="view-blog" hidden="">
+<section id="report-data-security" class="bordered">
+  <section class="svc-hero">
+    <div class="wrap article-shell">
+      <a class="crumb" href="#/">← a-zero.ai</a>
+      <div class="article-kicker">article 01 · data security</div>
+      <h1>The changing landscape of data security in the age of AI.</h1>
+      <div class="article-meta">
+        <span>october 2026</span>
+        <span>by a-zero.ai</span>
+        <span>7 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap article-shell article-body">
+      <p>AI is changing the architecture of the enterprise. A company is no longer just a collection of teams and assets; it is a system of knowledge, decisions, permissions, and trust. When AI compresses the time between insight and action, the assumptions that once governed data protection and strategic advantage begin to fray.</p>
+
+      <p>This is unmistakably visible in the changing landscape of data security. The traditional model assumed that valuable information could be protected through access controls, legal frameworks, and the opacity of internal operations. That assumption is increasingly fragile. Intellectual property is harder to defend, competitors can study behavior more efficiently, and product patterns are more easily reverse engineered than before. The market is forcing a stark reality: advantage is determined less by what a company possesses than by how quickly it can adapt, govern, and reconfigure its own operating system.</p>
+
+      <p>That is why data governance is no longer a compliance issue. It is a strategic discipline. As AI accelerates the rate of change, businesses must decide which knowledge is genuinely proprietary, which systems should be exposed to AI, which decisions must remain human, and how to operationalize those boundaries without slowing the organization below market and 'security' speed.</p>
+
+      <blockquote>
+        “The security landscape is shifting faster than ever — enterprises are under attack from a growing range of sources, while many are still using old models of protection that no longer match today’s threat environment.”
+        <br><br>
+        — IBM Security, on the accelerating need to update enterprise security strategy in the AI era.
+      </blockquote>
+
+      <p>IBM’s framing is useful because it points to a broader truth: security is no longer just about preventing intrusion. It is about protecting the integrity of the operating context itself. In a world where AI can analyze patterns, synthesize capabilities, and accelerate reverse engineering, the real question is not just whether information is protected. It is whether the company has a defensible way to decide what matters, how it is accessed, and how it is transformed into advantage.</p>
+
+      <h2>AI is accelerating the decay of old strategic assumptions</h2>
+
+      <p>Many organizations still think in terms of product differentiation, process advantages, and proprietary knowledge as if they were stable assets. But AI is changing the rate at which those advantages can be copied, decomposed, and reassembled. The market is increasingly defined by a wave of <strong>decomposition</strong>: capabilities once embedded inside a company’s workflows are becoming inspectable, portable, and replicable at scale. That does not make every competitive advantage obsolete. It changes where advantage resides.</p>
+
+      <p>What becomes valuable is not simply “having the secret.” It is the ability to <strong>structure the business intelligently</strong>: to organize knowledge, define decision rights, govern data access, and design the workflows that allow AI to create value without eroding trust. In a market where IP is harder to contain and competitors can move quickly, strategic advantage increasingly comes from the quality of the operating system behind the business.</p>
+
+      <h2>Data security is no longer the perimeter problem — it is the business design problem</h2>
+
+      <p>Many companies are still optimizing for the old model of security: lock down systems, restrict access, deploy controls, and hope the internal environment remains hard to navigate. But AI changes the operating equation. The decisions that matter are now split across data access, workflow design, tool selection, retrieval architecture, and governance rules. If those parts are not designed deliberately, AI becomes either unsafe or strategically shallow. It becomes a risk multiplier.</p>
+
+      <ul>
+        <li>What data is classified as decision-critical versus merely accessible?</li>
+        <li>Which workflows are safe to augment with AI, and which require human authority?</li>
+        <li>Which tools genuinely create leverage versus create exposure?</li>
+        <li>How do you preserve strategic integrity while enabling speed?</li>
+      </ul>
+
+      <p>The companies that win will not be the ones with the most dashboards or the most AI experiments. They will be the ones that make decisive data-management choices early — and that understand the current rate of change as a structural challenge to their business model, not simply a technical implementation challenge.</p>
+
+      <h2>Strategy has to move faster than the market</h2>
+
+      <p>The real shift is this: businesses can no longer assume that competitive advantage is protected by opacity alone. The current market conditions demand operational clarity. They require a sharper understanding of where value is created, what truly must remain private, what should be systemized, and how AI can improve decision quality without eroding trust.</p>
+
+      <p>That is the leadership challenge now. AI is not a mere tool; it is an accelerant. When the market changes this quickly, slow governance becomes a strategic liability. New business strategies are required: clearer ownership, more deliberate data management, tighter operational mapping, and stronger alignment between intelligence and execution. New businesses need to be more agile than ever.</p>
+
+      <p>In other words, the business must reorganize itself around the fact that AI is changing the operating environment. The question is no longer whether the organization will adapt. It is whether it will adapt in a way that protects its strategic position while capturing the opportunity created by the new market conditions.</p>
+    </div>
+  </section>
+</section>
+<section id="report-ai-market" class="bordered">
+  <section class="svc-hero">
+    <div class="wrap article-shell">
+      <a class="crumb" href="#/">← a-zero.ai</a>
+      <div class="article-kicker">article 02 · ai strategy</div>
+      <h1>AI is compressing the software stack. What that changes, operationally.</h1>
+      <div class="article-meta">
+        <span>october 2026</span>
+        <span>by a-zero.ai</span>
+        <span>5 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap article-shell article-body">
+      <p>Capabilities that once required separate applications are consolidating into general-purpose models. Writing, research, analysis, light design, and a growing share of workflow orchestration can now be done inside one interface. This is a drastic change in the software market, and it is must be treated as an urgent operational question: which of the tools an organization relies on are becoming interchangeable, which are not, and what that means for the information flowing through them.</p>
+
+      <h2>What is being compressed</h2>
+
+      <p>The clearest signal is in orchestration. Services such as Zapier and n8n connect applications through predefined triggers and steps. Tool protocols such as MCP let a model call external services directly. As models get better at following context and carrying out multi-step tasks, some of the orchestration that needed a visual workflow can be expressed as an instruction to a model. The same applies to features that are easy to describe: summarize this, draft that, extract these fields. A feature that can be stated in a sentence can often be reproduced in a sentence.</p>
+
+      <p>Two consequences follow. Prompt engineering has stopped being a distinct skill; clear instructions, well-designed context, and evaluation have not. And retrieval-augmented generation is no longer needed for small, stable collections that fit reliably in context, though it remains the right pattern for large, changing, permission-sensitive corpora where provenance matters.</p>
+
+      <h2>What is not</h2>
+
+      <p>Model capability is not product replacement. Established software provides records, permissions, audit trails, predictable behavior, support, and accountability. A model can reproduce a feature without reproducing any of that. A word processor gaining a natural-language interface is a change in interface, not evidence that the product or its market has gone.</p>
+
+      <p>Software advantages are being repriced. Features are more exposed. Durable value sits in distribution, trusted relationships, domain expertise, regulatory capability, reliable execution, and information that competitors cannot reproduce and that can be used lawfully. Workflow platforms lose some surface-level use cases and keep their value as integration, monitoring, and control layers.</p>
+
+      <h2>What it means for the data you hold</h2>
+
+      <p>If features are becoming cheap and governed information is not, the practical question is which information an organization holds that qualifies. Not all of it does. Volume is not a moat. Information is an asset when it is distinctive, accurate, current, legally usable, and connected to decisions or operations that matter. The same information becomes a liability when ownership is unclear, access is broader than it needs to be, retention is uncontrolled, or sensitive material reaches systems without suitable protections.</p>
+
+      <p>More capable models also change the analysis on both sides: they assist defensive review, and they lower the cost of finding weaknesses. That does not mean every organization faces an imminent incident. It means exposure should be assessed on the data actually held, the systems it moves through, and the consequences of its loss or misuse, rather than on general sentiment about AI.</p>
+
+      <h2>A working sequence</h2>
+
+      <ul>
+        <li>Inventory the information that supports differentiation: operational knowledge, customer relationships, research, processes.</li>
+        <li>Record where each category lives, who owns it, who can reach it, and under which terms it may be used.</li>
+        <li>Trace the routes by which it reaches AI tools and third-party services: prompts, uploads, integrations, fine-tuning, logs.</li>
+        <li>Evaluate tools on what they retain and expose, not only on what they can do. Records, permissions, logging, and failure handling matter more than feature lists.</li>
+        <li>Keep retrieval systems and workflow platforms where scale, change, permissions, or citations require them. Let them go where a well-specified instruction does the job.</li>
+        <li>Set protection proportionate to sensitivity, legal obligation, competitive value, and the cost of loss. Restricting everything restricts useful work.</li>
+      </ul>
+
+      <h2>Four claims, tested</h2>
+
+      <ul>
+        <li><strong>“RAG is obsolete.”</strong> Overstated. Large, dynamic, permissioned, or citation-dependent collections still need search and access control.</li>
+        <li><strong>“Workflow tools are finished.”</strong> Some workflows will collapse into model-native interaction. Production systems still need integration, observability, permissions, failure handling, and repeatability.</li>
+        <li><strong>“Protect everything.”</strong> No organization can remove all exposure without also restricting useful work.</li>
+        <li><strong>“Proprietary data guarantees a moat.”</strong> Only if it is accurate, usable, and governed. Otherwise it is mostly risk.</li>
+      </ul>
+
+      <p>The objective is deliberate control rather than maximum restriction: protect the information whose loss would materially weaken the organization, and keep the ability to learn, operate, and adapt. As software features become easier to reproduce, this kind of data governance is part of strategy, not an administrative step added after deployment.</p>
+    </div>
+  </section>
+</section>
+<section id="report-agentic" class="bordered">
+  <section class="svc-hero">
+    <div class="wrap article-shell">
+      <a class="crumb" href="#/">← a-zero.ai</a>
+      <div class="article-kicker">article 03 · agentic security</div>
+      <h1>Why agents leak data: a review of the network principles they break.</h1>
+      <div class="article-meta">
+        <span>october 2026</span>
+        <span>by a-zero.ai</span>
+        <span>6 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap article-shell article-body">
+      <p>An agent is a program that reads untrusted input, holds credentials, and makes network requests chosen at runtime by a model. Each of those is familiar to network security. Combined, they break principles the field settled decades ago. Most agent data leaks are not novel attacks. They are old failure modes, reintroduced by architecture.</p>
+
+      <h2>The core problem: no separation of control and data</h2>
+
+      <p>Telephone networks once carried control signals in the same channel as the voice, and anyone who could play the right tone could control the switch. The fix was out-of-band signalling. Language models are in-band by construction: instructions and data arrive as the same tokens. A web page, an email, a PDF, or a tool result can contain text the model treats as an instruction. This is prompt injection, and it ranks first in the OWASP Top 10 for LLM Applications. No reliable model-level filter exists. It has to be contained architecturally.</p>
+
+      <p>The containment rule is best stated as a combination to avoid. An agent becomes an exfiltration path when one session has all three of:</p>
+
+      <ul>
+        <li><strong>Access to private data</strong>: files, mailboxes, databases, internal tools.</li>
+        <li><strong>Exposure to untrusted content</strong>: web pages, inbound email, shared documents, third-party tool output.</li>
+        <li><strong>A way to communicate outward</strong>: HTTP requests, sending messages, opening pull requests, even rendering an image URL.</li>
+      </ul>
+
+      <p>Remove any one and injected instructions have nowhere to take the data. This combination is often called the lethal trifecta.</p>
+
+      <h2>Seven patterns that make agents unsafe</h2>
+
+      <ul>
+        <li><strong>Unrestricted egress.</strong> An agent that can fetch any URL can send data anywhere: in a query string, a request body, a DNS lookup, or a Markdown image the client renders automatically. Default-allow outbound traffic is the most common leak path.</li>
+        <li><strong>Ambient, over-scoped credentials.</strong> Long-lived tokens with broad scopes, often a shared service account, let any injected instruction act with the agent's full authority. This is the confused-deputy problem: the agent is authorized, the intent is not.</li>
+        <li><strong>Server-side request forgery.</strong> A fetch tool running inside the network can reach what the user cannot: internal admin panels, unauthenticated services, and the cloud metadata endpoint at 169.254.169.254, which can hand out instance credentials.</li>
+        <li><strong>Implicit trust in local services.</strong> Tool servers bound to 0.0.0.0, or to localhost without checking the Host and Origin headers, are reachable by other machines or by any web page through DNS rebinding.</li>
+        <li><strong>Flat trust between tools.</strong> Tool descriptions are read by the model, so a malicious or compromised tool server can instruct the agent to misuse other tools. Servers can also change their tool definitions after approval. Combining several tool servers in one session joins their trust domains.</li>
+        <li><strong>Secrets in the context window.</strong> API keys pasted into prompts, environment dumps, and verbose tool output put credentials where an injected instruction can read them back, and into logs and traces held by third parties.</li>
+        <li><strong>No audit or limits.</strong> Tool calls that are not logged with their inputs and outputs cannot be investigated. Without rate limits or a kill switch, a misdirected agent runs until someone notices.</li>
+      </ul>
+
+      <h2>Principles to hold to</h2>
+
+      <ul>
+        <li><strong>Deny egress by default.</strong> Route agent traffic through a proxy with a domain allowlist. Block private address ranges and metadata endpoints. Do not auto-render images or links from model output.</li>
+        <li><strong>Break the trifecta per session.</strong> A session that reads untrusted content should not hold private data and an outbound channel at the same time. Split the work across agents with different permissions, and pass only structured, validated data between them.</li>
+        <li><strong>Least privilege, short-lived credentials.</strong> Scope tokens to the task and the user, not to the agent platform. Expire them in minutes, not months.</li>
+        <li><strong>Keep secrets out of the model.</strong> Inject credentials at the proxy or tool layer so the model never sees them.</li>
+        <li><strong>Authenticate every hop.</strong> Use OAuth or mTLS between agents and tool servers. Bind local servers to loopback and validate Host and Origin.</li>
+        <li><strong>Pin and review tools.</strong> Treat tool servers as dependencies: pin versions, review descriptions, alert on changes, and isolate untrusted servers in separate sessions.</li>
+        <li><strong>Require approval for consequential actions.</strong> Sending data out, deleting, paying, or changing permissions should wait for a human, shown the exact action and payload.</li>
+        <li><strong>Log, limit, contain.</strong> Record every tool call. Rate-limit actions. Run agents in sandboxed environments with no lateral network reach, and keep a way to stop them.</li>
+      </ul>
+
+      <h2>Where to start</h2>
+
+      <p>Inventory every agent and AI integration in use, including those adopted informally. For each, record what data it can read, what untrusted content it ingests, and where it can send traffic. Any entry with all three is the first priority. Most of the fix is ordinary network discipline applied to a new kind of client: deny by default, scope tightly, authenticate everything, and log what happens.</p>
+    </div>
+  </section>
+</section>
 </main>
 
 <!-- ============================== ABOUT ============================== -->
-<main id="view-about" hidden>
+<main id="view-about" hidden="">
   <section class="svc-hero">
     <div class="wrap">
       <a class="crumb" href="#/">← a-zero.ai</a>
-      <span class="eyebrow" style="display:flex;">about — the approach</span>
-      <h1>AI doesn't make a company productive. systems do.</h1>
-      <p class="lead">a-zero.ai is me — Abdou Samaké — and a way of working built on one conviction: tools are easy to buy and easy to abandon; capability is a system your team understands and owns.</p>
+      <span class="eyebrow" style="display:flex;">About</span>
+      <h1>grounded in understanding.</h1>
+      <p class="lead">I work with leaders to understand AI systems, assess data and operational risks, and establish practical guidelines for data governance.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap split">
       <div>
-        <span class="eyebrow">how I work</span>
-        <h2>the smallest system that moves you forward.</h2>
+        <span class="eyebrow">background</span>
+        <h2>Over the horizon</h2>
       </div>
       <div class="body">
-        <p>The value of AI only shows up when it's understood — wired into real workflows, shaped around the people who use them, and grounded in data clean enough to trust.</p>
-        <p>So every engagement starts with how your business actually runs. Then we build the <strong>smallest system that moves it forward</strong> — no platform for the sake of platform, no tool for the sake of a demo.</p>
-        <p>And we don't stop at the build. Your team becomes <strong>systems thinkers</strong> — people who see their work as processes that can be shaped, automated, and improved — so the gains keep compounding long after we've stepped back.</p>
-        <p><strong>Understanding first; speed follows.</strong></p>
+        <p>As founder of a-zero.ai, I have developed AI strategy and data-governance approaches for three small businesses, defining data ownership, access, and acceptable-use policies for AI deployments.</p>
+        <p>Previously, I conducted technical due diligence at seriesOne, a FINRA-registered digital-securities platform, reviewing system architecture and technical documentation. </p>
+        <p>I hold a B.S. in Information Sciences from the University of Michigan, with a concentration in Financial Technology. My academic work included data modeling, large-scale data analysis, and human-computer interaction.</p>
+        <p>Before consulting, I played soccer professionally in Canada and Sweden . Competing and leading in high-stakes environments shaped my approach to responsibility, preparation, and clear judgment under pressure. I've also mentored </p>
       </div>
-    </div>
-  </section>
-
-  <section class="tinted">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">the philosophy</span>
-        <h2>five things I hold constant.</h2>
-      </div>
-      <ul class="cred">
-        <li>
-          <span class="cred-k">systems over tools</span>
-          <p>A tool is a subscription your team barely opens. A system is capability — data, agents, and people wired together around the work. I build the second one.</p>
-        </li>
-        <li>
-          <span class="cred-k">understanding first; speed follows</span>
-          <p>Implementation without understanding brings uncertainty. The clarity of your data and your thinking is what fuels the engine — speed is a consequence, never the starting point.</p>
-        </li>
-        <li>
-          <span class="cred-k">more productive and more humane</span>
-          <p>Technology only creates value if people actually adopt it. AI done right makes teams more productive <strong>and</strong> more humane at the same time — it takes out drudgery, not judgment.</p>
-        </li>
-        <li>
-          <span class="cred-k">yours, not ours</span>
-          <p>Everything runs on infrastructure you control. The system, the data, and the know-how stay on your side — no black box, no lock-in, nothing you can't govern without me.</p>
-        </li>
-        <li>
-          <span class="cred-k">the work speaks plainly</span>
-          <p>Every recommendation shows its reasoning, every claim traces to something you can check, and I name what works against my own plan. If the evidence breaks my assumption, the assumption goes.</p>
-        </li>
-      </ul>
     </div>
   </section>
 
   <section class="band">
     <div class="wrap">
       <span class="eyebrow" style="color:var(--accent-soft); justify-content:center; display:flex;">get started</span>
-      <h2>tell us where your company stands.</h2>
-      <p>We'll tell you which of the two doors is yours.</p>
-      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20let's%20talk">let's talk <span class="arrow">→</span></a></p>
+      <h2>Discuss a strategic question.</h2>
+      <p>For inquiries regarding AI risk, data governance, and decision support.</p>
+      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20consultation">Request a consultation <span class="arrow">→</span></a></p>
     </div>
   </section>
 </main>
@@ -879,18 +953,17 @@
   <div class="wrap foot">
     <span class="fbrand">
       <svg class="mark" viewBox="0 0 120 88" aria-hidden="true" style="width:26px;height:19px;">
-        <polygon points="6,14 112,26 70,44" fill="var(--ink)"/>
-        <polygon points="6,14 70,44 40,52" fill="var(--muted)"/>
-        <polygon points="112,26 70,44 58,82" fill="var(--ink-soft)"/>
-        <polygon points="70,44 58,82 40,52" fill="var(--line-strong)"/>
+        <polygon points="6,14 112,26 70,44" fill="var(--ink)"></polygon>
+        <polygon points="6,14 70,44 40,52" fill="var(--muted)"></polygon>
+        <polygon points="112,26 70,44 58,82" fill="var(--ink-soft)"></polygon>
+        <polygon points="70,44 58,82 40,52" fill="var(--line-strong)"></polygon>
       </svg>
       <span class="word">a-zero<span class="tld">.ai</span></span>
     </span>
     <span class="meta">
+      <a href="#/blog">reports</a>
       <a href="#/workshops">workshops</a>
-      <a href="#/agents">agentic building</a>
       <a href="#/about">about</a>
-      <a href="mailto:samake.ag@gmail.com">contact</a>
     </span>
   </div>
 </footer>
@@ -903,13 +976,12 @@
      It is stamped into the page here; the editor rebuilds the published
      document from the template, never from the live DOM. */
   var tpl = document.getElementById("az-page");
-  tpl.after(tpl.content.cloneNode(true));
+  document.body.appendChild(tpl.content.cloneNode(true));
 
-  var VIEWS = ["view-home", "view-workshops", "view-agents", "view-about"];
+  var VIEWS = ["view-home", "view-blog", "view-workshops", "view-about"];
   var ROUTES = {
+    "#/blog": "view-blog",
     "#/workshops": "view-workshops",
-    "#/workshop": "view-workshops",
-    "#/agents": "view-agents",
     "#/about": "view-about"
   };
   var pending = null;
@@ -953,13 +1025,18 @@
 <script id="az-editor">
 (function () {
   "use strict";
-  /* In-place editor. It appears only for people who can edit this artifact;
-     public visitors never see it. An edit is written into a copy of
-     <template id="az-page">, the whole document is rebuilt from source, and
-     that is published as a new version. The live DOM is never serialized. */
+    /* Edits are applied to a copy of the canonical template, then downloaded
+      as a complete HTML file. The live DOM is never serialized. */
   var tpl = document.getElementById("az-page");
-  var claude = window.claude;
-  if (!tpl || !claude || typeof claude.use !== "function") return;
+  if (!tpl) return;
+
+  /* Editing goes through serve.mjs (http://localhost:5050), which saves straight
+     into index.html. Opened as a file, hop over to it; on the public site, no editor. */
+  var SERVER = "http://localhost:5050/";
+  var viaServer = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (location.protocol === "file:") {
+    fetch(SERVER, { mode: "no-cors", cache: "no-store" }).then(function () { location.replace(SERVER + location.hash); }, function () {});
+  } else if (!viaServer) return;
 
   /* Text blocks that can be edited. A candidate is kept only if everything
      inside it is inline text formatting, so links, buttons-in-paragraphs and
@@ -967,17 +1044,16 @@
   var EDITABLE = [
     "h1", "h2", "h3", "p", ".eyebrow", ".brand .word", ".fbrand .word",
     ".nav-links a", ".foot .meta a", ".crumb", ".btn",
-    ".spec .for", ".spec .go", ".who > div", ".caps li > span",
+    ".who > div", ".caps li > span",
     ".steps .n", ".offer-item .k", ".case-body .k", ".cred-k",
     ".ws-foot em", ".pull figcaption"
   ].join(",");
   var INLINE = { B: 1, STRONG: 1, I: 1, EM: 1, BR: 1, SPAN: 1 };
   var KEEP_CLASS = { dim: 1, arrow: 1, tld: 1 };
-  var READ_ONLY = { not_writer: 1, not_granted: 1, not_declared: 1, consent_required: 1, capability_disabled: 1, capability_removed: 1 };
   var STASH = "az-editor-v1";
 
-  var art = null, live = [], twins = [], base = [], liveRoots = [];
-  var dirty = {}, editing = false, saving = false, readOnly = false;
+  var live = [], twins = [], base = [], liveRoots = [];
+  var dirty = {}, editing = false;
   var ui = {}, stashTimer = null, discardTimer = null;
 
   /* ---------- pairing live blocks with their source in the template ---------- */
@@ -997,8 +1073,9 @@
     return all;
   }
   function pairUp() {
-    var n = tpl.nextElementSibling;
-    while (n && n.id !== "az-boot") { liveRoots.push(n); n = n.nextElementSibling; }
+    var bootScript = document.getElementById("az-boot");
+    var n = bootScript && bootScript.nextElementSibling;
+    while (n && n.id !== "az-editor") { liveRoots.push(n); n = n.nextElementSibling; }
     var twinRoots = Array.prototype.slice.call(tpl.content.children);
     if (liveRoots.length !== twinRoots.length) return false;
     for (var k = 0; k < twinRoots.length; k++) if (liveRoots[k].tagName !== twinRoots[k].tagName) return false;
@@ -1072,8 +1149,8 @@
         "<label class=\"az-field\" for=\"az-view\"><span class=\"az-lbl\">page<\/span>" +
           "<select id=\"az-view\">" +
             "<option value=\"#/\">home<\/option>" +
+            "<option value=\"#/blog\">reports<\/option>" +
             "<option value=\"#/workshops\">workshops<\/option>" +
-            "<option value=\"#/agents\">agentic building<\/option>" +
             "<option value=\"#/about\">about<\/option>" +
           "<\/select><\/label>" +
         "<span class=\"az-sep\" aria-hidden=\"true\"><\/span>" +
@@ -1083,10 +1160,10 @@
         "<span class=\"az-sep\" aria-hidden=\"true\"><\/span>" +
         "<span class=\"az-status\" aria-live=\"polite\"><\/span>" +
         "<button type=\"button\" class=\"az-btn az-ghost\" data-act=\"discard\">Discard<\/button>" +
-        "<button type=\"button\" class=\"az-btn az-primary\" data-act=\"save\">Save &amp; publish<\/button>" +
+        "<button type=\"button\" class=\"az-btn az-primary\" data-act=\"save\">Save HTML…<\/button>" +
         "<button type=\"button\" class=\"az-x\" data-act=\"close\" title=\"Close the editor\" aria-label=\"Close the editor\">&times;<\/button>" +
       "<\/div>" +
-      "<p class=\"az-hint\">Click any text to edit it. Enter finishes, Shift+Enter adds a line break, Ctrl+S saves.<\/p>");
+      "<p class=\"az-hint\">Click any text to edit it. Enter finishes, Shift+Enter adds a line break, Ctrl+S saves straight into index.html.<\/p>");
     ui.status = ui.bar.querySelector(".az-status");
     ui.save = ui.bar.querySelector("[data-act=\"save\"]");
     ui.discard = ui.bar.querySelector("[data-act=\"discard\"]");
@@ -1115,18 +1192,15 @@
   }
   function syncView() {
     var hsh = location.hash;
-    ui.view.value = (hsh === "#/workshops" || hsh === "#/workshop") ? "#/workshops"
-      : (hsh === "#/agents" || hsh === "#/about") ? hsh : "#/";
+    ui.view.value = (hsh === "#/blog" || hsh === "#/workshops" || hsh === "#/about") ? hsh : "#/";
   }
   function count() { return Object.keys(dirty).length; }
   function refresh() {
     var n = count();
-    if (!saving) {
-      ui.status.textContent = n ? n + (n === 1 ? " change" : " changes") : "No changes";
-      ui.status.classList.toggle("is-dirty", n > 0);
-    }
-    ui.save.disabled = saving || readOnly || !n;
-    ui.discard.disabled = saving || !n;
+    ui.status.textContent = n ? n + (n === 1 ? " change" : " changes") : "No changes";
+    ui.status.classList.toggle("is-dirty", n > 0);
+    ui.save.disabled = !n;
+    ui.discard.disabled = !n;
     ui.badge.hidden = !n;
     ui.badge.textContent = n ? n + " unsaved" : "";
   }
@@ -1135,6 +1209,7 @@
   /* ---------- edit mode ---------- */
   function enterEdit() {
     if (editing) return;
+    if (!viaServer) { toast("To edit, start the editor: in VS Code, Terminal → Run Task → \"site editor\". This page then opens at localhost:5050."); return; }
     editing = true;
     document.body.classList.add("az-editing");
     live.forEach(function (el) {
@@ -1234,36 +1309,20 @@
     document.addEventListener("drop", noDrag, true);
   }
 
-  /* ---------- saving ---------- */
+  /* ---------- saving: serve.mjs writes index.html in place, then we reload to it ---------- */
   function save() {
-    if (!editing || saving || readOnly || !count()) return;
+    if (!editing || !count()) return;
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
     var html;
-    try { html = buildDocument(); } catch (e) { say("Couldn't assemble the page. Nothing was published."); return; }
-    stash(true);
-    saving = true;
-    refresh();
-    say("Publishing…");
-    publish(html, true);
-  }
-  function publish(html, retry) {
-    art.publish(html).then(function () {
-      say("Published — reloading…");
-    }, function (err) {
-      var code = (err && err.code) || "upstream_error";
-      if (code === "upstream_error" && retry) {
-        setTimeout(function () { publish(html, false); }, 700 + Math.random() * 1300);
-        return;
-      }
-      if (code === "conflict") { say("A newer version was published. Reloading to it; your edits are kept in this tab."); return; }
-      saving = false;
+    try { html = buildDocument(); } catch (e) { say("Couldn't assemble the page. Nothing was saved."); return; }
+    say("Saving…");
+    fetch(location.pathname, { method: "PUT", body: html }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      stash(true);
+      location.reload();
+    }).catch(function () {
       stash(false);
-      if (READ_ONLY[code]) { readOnly = true; refresh(); say("Read-only here: this view can't publish."); return; }
-      refresh();
-      if (code === "rate_limited") say("Publishing too often. Wait a moment, then save again.");
-      else if (code === "too_large") say("The page is too large to publish. Your edits are kept here.");
-      else if (code === "invalid_content" || code === "transform_error") say("The page was rejected (" + code + "). Your edits are kept here.");
-      else say("Couldn't publish (" + code + "). Your edits are kept, so try again.");
+      say("Couldn't save. Is serve.mjs still running? Your edits are kept here, so try again.");
     });
   }
 
@@ -1313,7 +1372,7 @@
     });
     if (!todo.length) {
       clearStash();
-      if (s.pending) toast("Published. Your changes are live.");
+      if (s.pending) toast("Saved. Your changes are in index.html.");
       return;
     }
     offer(todo.length + (todo.length === 1 ? " unsaved edit" : " unsaved edits") + " from before the reload.",
@@ -1326,17 +1385,11 @@
       clearStash);
   }
 
-  /* ---------- start: only for people who can publish this artifact ---------- */
-  Promise.all([claude.use("user"), claude.use("artifact")]).then(function (r) {
-    var user = r[0];
-    art = r[1];
-    if (!user || !art) return null;
-    return user.canEdit().then(function (ok) {
-      if (!ok || !pairUp()) return;
-      buildChrome();
-      wire();
-      restore();
-    });
-  }).catch(function () {});
+  if (!pairUp()) return;
+  buildChrome();
+  wire();
+  restore();
 })();
 </script>
+</body>
+</html>
