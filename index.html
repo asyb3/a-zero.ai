@@ -1,1395 +1,566 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en" data-page="advisory-page"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>a-zero.ai</title>
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
-</head>
-<body>
-<style id="az-style">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>a-zero.ai · Company focused hands-on AI tool workshops</title>
+<meta name="description" content="Company focused, hands-on AI tool workshops. In person and interactive, built around understanding the tools and using them to their full potential.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -12 120 120'%3E%3Cpolygon points='6,14 112,26 70,44' fill='%2317191D'/%3E%3Cpolygon points='6,14 70,44 40,52' fill='%23868B93'/%3E%3Cpolygon points='112,26 70,44 58,82' fill='%2340444C'/%3E%3Cpolygon points='70,44 58,82 40,52' fill='%23D2D4DA'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&amp;display=swap" rel="stylesheet">
+<style>
+  /* AXEL-style gallery system: white field, black labels, one 13px scale,
+     square edges, hairline rules, photography carries the weight. */
   :root {
-    --ground: #FAFAFB;
-    --surface: #F1F2F4;
-    --surface-2: #E9EAED;
-    --ink: #17191D;
-    --ink-soft: #40444C;
-    --muted: #868B93;
-    --line: #E3E4E8;
-    --line-strong: #D2D4DA;
-    --accent: #6F7D75;
-    --accent-soft: #8A978F;
-    --band: #2A2D33;
-    --band-ink: #EDEEF0;
-    --band-muted: #9CA2AA;
-    --band-line: #3A3E45;
-
-    --f-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, sans-serif;
-    --f-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-
-    --wrap: 1080px;
-    --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
-    --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
-    --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
-    --step-2: clamp(1.6rem, 1.35rem + 1.2vw, 2.4rem);
-    --step-3: clamp(2.4rem, 1.9rem + 2.6vw, 4.2rem);
+    color-scheme: light;
+    --white: #ffffff;
+    --ink: #000000;
+    --near: #090909;
+    --rule: #e9e9e9;
+    --studio: #f3f3f3;
+    --inactive: #aaaaaa;
+    --green: #007b43; /* tokiwa, evergreen: the one living colour, a signal, never a field */
+    --f: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* one spacing scale (4px base) and one section rhythm, used everywhere */
+    --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px; --s7: 32px; --s8: 40px;
+    --side: 20px; --sec: 56px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground: #0E0F12;
-      --surface: #16181C;
-      --surface-2: #1C1F24;
-      --ink: #ECEDEF;
-      --ink-soft: #B4B8BF;
-      --muted: #7C818A;
-      --line: #23262B;
-      --line-strong: #2E3138;
-      --accent: #93A29A;
-      --accent-soft: #7E8C84;
-      --band: #1A1D22;
-      --band-ink: #ECEDEF;
-      --band-muted: #878D96;
-      --band-line: #2B2F36;
-    }
-  }
-  :root[data-theme="light"] {
-    --ground: #FAFAFB; --surface: #F1F2F4; --surface-2: #E9EAED; --ink: #17191D;
-    --ink-soft: #40444C; --muted: #868B93; --line: #E3E4E8; --line-strong: #D2D4DA;
-    --accent: #6F7D75; --accent-soft: #8A978F; --band: #2A2D33; --band-ink: #EDEEF0;
-    --band-muted: #9CA2AA; --band-line: #3A3E45;
-  }
-  :root[data-theme="dark"] {
-    --ground: #0E0F12; --surface: #16181C; --surface-2: #1C1F24; --ink: #ECEDEF;
-    --ink-soft: #B4B8BF; --muted: #7C818A; --line: #23262B; --line-strong: #2E3138;
-    --accent: #93A29A; --accent-soft: #7E8C84; --band: #1A1D22; --band-ink: #ECEDEF;
-    --band-muted: #878D96; --band-line: #2B2F36;
-  }
-
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0;
-    background: var(--ground);
-    color: var(--ink);
-    font-family: var(--f-sans);
-    font-size: var(--step-0);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+  body { margin: 0; background: var(--white); color: var(--near); font-family: var(--f); font-size: 13px; line-height: 1.5; font-weight: 470; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4, p { margin: 0; font-weight: inherit; font-size: inherit; }
+  @media (min-width: 761px) { :root { --side: 40px; --sec: 80px; } }
+  .wrap { padding-inline: var(--side); }
+  .up { text-transform: uppercase; font-weight: 520; }
+  .muted { color: var(--inactive); }
+  .rule { border-top: 1px solid var(--rule); }
+  .arrow::after { content: " →"; }
+  .link:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--green); }
+  ::selection { background: color-mix(in srgb, var(--green) 20%, transparent); }
+  section { padding-block: var(--sec); scroll-margin-top: 90px; }
+  /* every section opens the same way: hairline, label row, then one 40px step to the content */
+  .row { display: grid; grid-template-columns: 1fr 2fr; gap: var(--s5); border-top: 1px solid var(--rule); padding-top: var(--s4); margin-bottom: var(--s8); }
+  @media (max-width: 760px) { .row { grid-template-columns: 1fr; gap: var(--s2); } }
+
+  /* strip + header */
+  .strip { background: var(--studio); text-align: center; padding: 8px 16px; font-size: 12px; }
+  header { position: sticky; top: 0; z-index: 10; background: var(--white); border-bottom: 1px solid var(--rule); }
+  .head { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 56px; }
+  .head nav { display: flex; gap: 16px; }
+  .head nav a { color: var(--near); }
+  .head nav a:hover { color: var(--inactive); }
+  .wordmark { display: inline-flex; align-items: center; gap: 8px; font-size: 19px; font-weight: 600; letter-spacing: -0.04em; color: var(--ink); }
+  .wordmark svg { width: 26px; height: 19px; }
+  .wordmark b { font-weight: 400; }
+  .wordmark .zero { position: relative; }
+  .wordmark .zero::after { content: ""; position: absolute; left: 8%; right: 8%; top: 52%; height: .085em; background: currentColor; transform: translateY(-50%); }
+  .head .right { justify-self: end; }
+  @media (max-width: 760px) {
+    .head { grid-template-columns: auto 1fr; height: auto; padding-block: var(--s3); row-gap: var(--s3); }
+    .head .wordmark { order: -1; }
+    .head nav.left { grid-row: 2; grid-column: 1 / -1; }
   }
-  .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
+
+  /* hero: headline, then a triptych of tall photographs */
+  .hero-text { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); padding-block: var(--sec) var(--s8); }
+  .hero-text h1 { font-size: clamp(22px, 1.4rem + 1.4vw, 36px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 470; max-width: 20ch; color: var(--ink); }
+  .hero-text p { align-self: end; max-width: 46ch; font-size: 14px; }
+  @media (max-width: 760px) { .hero-text { grid-template-columns: 1fr; } }
+  .trip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
+  @media (max-width: 760px) { .trip { grid-template-columns: 1fr 1fr; } .trip figure:last-child { display: none; } }
+  .trip figure { margin: 0; }
+  .trip img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: var(--studio); }
+  .trip figcaption { display: flex; justify-content: space-between; gap: var(--s2); padding-top: var(--s3); }
+
+  /* editorial two-column rows */
+  .body { grid-column: 2; }
+  @media (max-width: 760px) { .body { grid-column: 1; } }
+  .lead { font-size: clamp(15px, .9rem + .35vw, 19px); line-height: 1.45; color: var(--ink); max-width: 52ch; }
+  .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); margin-top: var(--s8); }
+  @media (max-width: 760px) { .points { grid-template-columns: 1fr; } }
+  .points div { border-top: 1px solid var(--rule); padding-top: var(--s3); }
+  .points p { margin-top: var(--s2); max-width: 40ch; }
+
+  /* workshops */
+  .ws { display: grid; grid-template-columns: 1fr 2fr; gap: var(--s5); }
+  .ws + .ws { border-top: 1px solid var(--rule); margin-top: var(--sec); padding-top: var(--sec); }
+  @media (max-width: 760px) { .ws { grid-template-columns: 1fr; } }
+  .ws > figure { margin: 0; }
+  .ws > figure img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--studio); }
+  .ws > figure figcaption { padding-top: var(--s3); }
+  .ws h2 { font-size: clamp(20px, 1.1rem + 1vw, 28px); letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); margin-top: var(--s2); }
+  .ws .intro { margin-top: var(--s4); max-width: 64ch; font-size: 14px; line-height: 1.6; }
+  .facts { margin: var(--s6) 0 0; max-width: 64ch; }
+  .facts div { display: grid; grid-template-columns: 110px 1fr; gap: var(--s3); padding-block: var(--s2); border-top: 1px solid var(--rule); }
+  .facts div:last-child { border-bottom: 1px solid var(--rule); }
+  .facts dt { margin: 0; }
+  .facts dd { margin: 0; }
+  .modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); margin-top: var(--s8); }
+  @media (max-width: 760px) { .modules { grid-template-columns: 1fr; } }
+  .modules h3 { color: var(--ink); margin-top: var(--s2); font-weight: 520; }
+  .modules p { margin-top: var(--s2); line-height: 1.6; }
+  .goal { margin-top: var(--s8); max-width: 64ch; color: var(--ink); }
+
+  /* community: the client's words in the content column, at the lead size */
+  .quote { margin-bottom: 0; }
+  .quote blockquote { margin: 0; max-width: 64ch; font-size: 14px; line-height: 1.65; color: var(--ink); }
+  .quote cite { display: block; margin-top: var(--s4); font-style: normal; }
+
+  /* about: its own small page, one narrow column */
+  #advisory-page section, #about-page section { padding-top: var(--s8); }
+  .about { display: grid; grid-template-columns: 200px minmax(0, 60ch); gap: var(--s8); }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } .about figure { max-width: 200px; } }
+  .about figure { margin: 0; }
+  .about figure img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: var(--studio); }
+  .about .text p { margin-top: var(--s3); line-height: 1.65; }
+  .about .text p.lead { font-size: 15px; line-height: 1.5; color: var(--ink); }
+  .about h3 { margin-top: var(--s6); }
   [hidden] { display: none !important; }
 
-  .eyebrow {
-    font-family: var(--f-mono);
-    font-size: var(--step--1);
-    letter-spacing: 0.16em;
-    color: var(--accent);
-    margin: 0 0 1rem;
-    display: inline-flex; align-items: center; gap: 0.6em;
-  }
-  .eyebrow::before { content: ""; width: 1.6em; height: 1px; background: var(--accent-soft); opacity: 0.7; }
+  /* footer: the last section, built exactly like the others */
+  /* the footer is one full-width band: contact on top, the name on the bottom line */
+  footer { background: var(--studio); border-top: 1px solid var(--rule); padding-block: var(--sec) var(--s6); }
+  .foot { margin-bottom: 0; }
+  .foot p { margin-top: var(--s2); }
+  /* base line of the footer: brand under the label column, copyright under the content, same grid as every section */
+  .foot-base { display: grid; grid-template-columns: 1fr 2fr; gap: var(--s5); align-items: center; margin-top: var(--s7); border-top: 1px solid var(--rule); padding-top: var(--s4); }
+  .foot-base .wordmark { font-size: 14px; }
+  .foot-base .wordmark svg { width: 20px; height: 15px; }
+  .foot-base small { font-size: 12px; color: var(--inactive); justify-self: end; text-align: right; }
+  .foot-base .zero { position: relative; }
+  .foot-base .zero::after { content: ""; position: absolute; left: 8%; right: 8%; top: 52%; height: .085em; background: currentColor; transform: translateY(-50%); }
+  @media (max-width: 760px) { .foot-base { grid-template-columns: 1fr; gap: var(--s2); } }
 
-  h1, h2, h3 { text-wrap: balance; font-weight: 500; letter-spacing: -0.02em; line-height: 1.08; margin: 0; }
+  /* page context: the booking buttons say "Request advisory" on the advisory page */
+  html:not([data-page="advisory-page"]) .for-advisory, html[data-page="advisory-page"] .for-workshop { display: none; }
 
-  a { color: inherit; }
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 2px;
-  }
+  /* "Book a workshop" buttons look like the links around them */
+  .head .right button { font-family: inherit; font-size: inherit; font-weight: inherit; text-transform: inherit; color: var(--near); background: none; border: 0; padding: 0; cursor: pointer; }
 
-  /* ---------- header ---------- */
-  header {
-    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
-    backdrop-filter: saturate(1.2) blur(10px);
-    background: color-mix(in srgb, var(--ground) 82%, transparent);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-  .brand { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-  .brand .mark { width: 30px; height: 22px; display: block; }
-  .brand .word { font-size: 1.06rem; letter-spacing: -0.03em; font-weight: 500; color: var(--ink); }
-  .brand .word .tld { color: var(--muted); }
-  .nav-links { display: flex; align-items: center; gap: 1.6rem; }
-  .nav-links a {
-    font-family: var(--f-sans); font-size: 0.98rem; letter-spacing: -0.005em; font-weight: 450;
-    color: var(--ink-soft); text-decoration: none; transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-cta {
-    font-family: var(--f-sans); font-size: 0.94rem; font-weight: 450;
-    padding: 0.55rem 1.1rem; border: 1px solid var(--line-strong); border-radius: 999px;
-    text-decoration: none; color: var(--ink); transition: border-color .2s, background .2s;
-  }
-  .nav-cta:hover { border-color: var(--ink); background: var(--surface); }
-  @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
+  /* the message box: a small square panel that opens above the pill, bottom right, and leaves the page alone */
+  #msgbox { position: fixed; inset: auto 20px 72px auto; margin: 0; width: min(320px, calc(100vw - 40px)); padding: var(--s4); background: var(--white); color: var(--near); border: 1px solid var(--rule); box-shadow: 0 8px 30px rgba(0,0,0,.10); }
+  .msg-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--s3); }
+  .msg-head button { font: inherit; font-size: 18px; line-height: 1; color: var(--inactive); background: none; border: 0; padding: 0 2px; cursor: pointer; }
+  .msg-head button:hover { color: var(--ink); }
+  .msg { display: grid; gap: var(--s3); }
+  .msg label { display: grid; gap: 4px; }
+  .msg input, .msg textarea { font: inherit; color: var(--ink); background: var(--white); border: 1px solid var(--rule); border-radius: 0; padding: 8px 10px; resize: vertical; }
+  .msg input:focus-visible, .msg textarea:focus-visible { outline: none; border-color: var(--ink); }
+  .msg [type=submit] { justify-self: start; font: inherit; font-weight: 520; text-transform: uppercase; background: var(--ink); color: var(--white); border: 0; padding: 10px 14px; cursor: pointer; }
+  .msg [type=submit]:hover { opacity: .85; }
+  .msg [type=submit]:disabled { opacity: .4; cursor: default; }
+  .msg [type=submit]:focus-visible, .msg-head button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+  .msg .status:empty { display: none; }
 
-  .article-shell { max-width: 760px; margin: 0 auto; }
-  .article-shell .article-kicker { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .12em; color: var(--accent); text-transform: uppercase; }
-  .article-shell h1 { font-size: clamp(2.2rem, 1.6rem + 2.6vw, 4rem); margin-top: .8rem; }
-  .article-meta { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 1.2rem; font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .06em; color: var(--muted); }
-  .article-body { margin-top: 2.2rem; color: var(--ink-soft); font-size: 1.08rem; }
-  .article-body p { margin: 0 0 1.5rem; }
-  .article-body h2 { color: var(--ink); font-size: clamp(1.4rem, 1.2rem + .8vw, 2rem); margin: 2.3rem 0 1rem; }
-  .article-body blockquote {
-    margin: 2rem 0; padding: 1.4rem 1.6rem; border-left: 2px solid var(--accent); background: var(--surface); color: var(--ink); font-size: 1.06rem;
-  }
-  .article-body strong { color: var(--ink); }
-  .article-body ul { margin: 1.2rem 0 1.75rem; padding-left: 1.2rem; }
-  .article-body li { margin-bottom: .7rem; }
+  /* the one rounded object */
+  .launch { font-family: inherit; font-size: inherit; cursor: pointer; position: fixed; right: 20px; bottom: 20px; z-index: 20; background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 0; padding: 11px 15px; display: inline-flex; align-items: center; gap: 8px; }
+  footer .launch { position: static; flex: none; }
+  /* contact row: email and note on the left, the booking button on the right, all on one top line */
+  .foot-main { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--s5); }
 
-  /* ---------- hero ---------- */
-  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
-  .hero-grid {
-    display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 2rem;
-    padding-block: clamp(3.5rem, 9vw, 7rem);
-  }
-  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
-  .hero h1 { font-size: var(--step-3); }
-  .hero h1 .dim { color: var(--muted); }
-  .hero p.lead {
-    font-size: var(--step-1); color: var(--ink-soft); max-width: 36ch;
-    margin: 1.4rem 0 2rem; line-height: 1.45; font-weight: 400;
-  }
-  .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.55em;
-    font-family: var(--f-sans); font-size: 0.98rem; letter-spacing: -0.005em; font-weight: 450;
-    padding: 0.8rem 1.5rem; border-radius: 999px; text-decoration: none;
-    background: var(--ink); color: var(--ground);
-    border: 1px solid var(--ink); transition: transform .18s ease, opacity .2s; cursor: pointer;
-  }
-  .btn:hover { transform: translateY(-2px); opacity: 0.92; }
-  .btn .arrow { transition: transform .2s ease; }
-  .btn:hover .arrow { transform: translateX(3px); }
-  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
-  .btn.ghost:hover { border-color: var(--ink); background: var(--surface); }
-
-  .hero-art { position: relative; display: grid; place-items: center; min-height: 300px; }
-  .hero-art svg { width: 100%; max-width: 440px; height: auto; overflow: visible; }
-  .facet { transition: opacity .6s ease; }
-
-  @keyframes glidein {
-    from { opacity: 0; transform: translate(-26px, 20px) rotate(-4deg); }
-    to   { opacity: 1; transform: translate(0,0) rotate(0); }
-  }
-  .plane-anim { animation: glidein 1.1s cubic-bezier(.2,.7,.2,1) both; transform-origin: 60% 50%; }
-  @keyframes dash { to { stroke-dashoffset: 0; } }
-  .trail { stroke-dasharray: 4 7; stroke-dashoffset: 260; animation: dash 1.6s ease-out .3s forwards; }
-  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-  .bobber { animation: bob 6s ease-in-out infinite 1.2s; transform-origin: center; }
-  @media (prefers-reduced-motion: reduce) {
-    .plane-anim, .trail, .bobber { animation: none; }
-    .trail { stroke-dashoffset: 0; }
-  }
-
-  .hero-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0.55; }
-  .hero-bg svg { width: 100%; height: 100%; }
-
-  /* ---------- section scaffold ---------- */
-  section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
-  .sec-head { max-width: 36ch; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
-  .sec-head h2 { font-size: var(--step-2); }
-  .sec-head p { color: var(--ink-soft); margin: 1rem 0 0; }
-  .bordered { border-top: 1px solid var(--line); }
-  .tinted { background: var(--surface); border-block: 1px solid var(--line); }
-  .track { scroll-margin-top: calc(76px + env(safe-area-inset-top, 0px)); }
-  .track-head { max-width: 62ch; margin-bottom: clamp(2rem, 4vw, 3.2rem); }
-  .track-head h2 { font-size: var(--step-2); max-width: 24ch; }
-  .track-head p { color: var(--ink-soft); margin: 1rem 0 0; max-width: 58ch; }
-  .track-head .who { margin-top: 1.7rem; }
-
-  /* ---------- spectrum rows ---------- */
-  .spec { list-style: none; margin: 0; padding: 0; }
-  .spec li { border-top: 1px solid var(--line); }
-  .spec .row {
-    display: grid; grid-template-columns: 0.85fr 1.3fr; gap: clamp(1.2rem, 3vw, 3rem);
-    align-items: start; padding-block: clamp(1.6rem, 3.5vw, 2.6rem);
-    padding-inline: clamp(.6rem, 1.5vw, 1.2rem);
-  }
-  @media (max-width: 820px) { .spec .row { grid-template-columns: 1fr; gap: .9rem; } }
-  .spec h3 { font-size: var(--step-1); margin-top: .5rem; }
-  .spec .desc { color: var(--ink-soft); margin: 0; line-height: 1.55; }
-
-  /* ---------- service page scaffold ---------- */
-  .svc-hero { border-bottom: 1px solid var(--line); padding-block: clamp(3rem, 7vw, 5.5rem); }
-  .svc-hero h1 { font-size: clamp(2rem, 1.6rem + 2.2vw, 3.4rem); max-width: 22ch; }
-  .svc-hero p.lead { font-size: var(--step-1); color: var(--ink-soft); max-width: 54ch; margin: 1.4rem 0 0; line-height: 1.5; }
-  .crumb { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .1em; color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 1.4rem; }
-  .crumb:hover { color: var(--ink); }
-  .who { display: flex; flex-wrap: wrap; gap: 1rem 3rem; margin-top: 2rem; }
-  .who div { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: .06em; color: var(--ink-soft); }
-  .who b { display: block; color: var(--accent); font-weight: 500; letter-spacing: .12em; margin-bottom: .3rem; }
-
-  /* capability lists */
-  .caps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 2rem; }
-  @media (max-width: 640px) { .caps { grid-template-columns: 1fr; } }
-  .caps li {
-    display: flex; gap: 0.75rem; align-items: baseline;
-    color: var(--ink-soft); font-size: var(--step-0); line-height: 1.5;
-    border-top: 1px solid var(--line); padding-block: 0.85rem;
-  }
-  .caps li::before {
-    content: ""; flex: none; width: 9px; height: 9px; transform: translateY(1px);
-    background: var(--accent); clip-path: polygon(0 0, 100% 35%, 45% 100%);
-  }
-  .caps b { color: var(--ink); font-weight: 500; }
-
-  /* card grid (consulting deliverables) */
-  .offer-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-  @media (max-width: 780px) { .offer-list { grid-template-columns: 1fr; } }
-  .offer-item { background: var(--ground); padding: clamp(1.6rem, 3vw, 2.4rem); display: flex; flex-direction: column; gap: 0.9rem; }
-  .offer-item .k { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: 0.1em; color: var(--accent); }
-  .offer-item h3 { font-size: var(--step-1); }
-  .offer-item p { color: var(--ink-soft); margin: 0; font-size: var(--step-0); line-height: 1.55; }
-
-  /* split + steps */
-  .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
-  @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
-  .split h2 { font-size: var(--step-2); max-width: 18ch; }
-  .split .body p { color: var(--ink-soft); margin: 0 0 1.1rem; max-width: 60ch; }
-  .split .body p:last-child { margin-bottom: 0; }
-  .split .body strong { color: var(--ink); font-weight: 500; }
-  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.3rem; }
-  .steps li { border-top: 1px solid var(--line); padding-top: 1.1rem; display: flex; gap: 1rem; align-items: baseline; }
-  .steps li:first-child { border-top: 0; padding-top: 0; }
-  .steps .n { font-family: var(--f-mono); font-size: var(--step--1); color: var(--accent); letter-spacing: .1em; white-space: nowrap; }
-  .steps p { margin: 0; color: var(--ink-soft); }
-  .steps b { color: var(--ink); font-weight: 500; }
-
-  .ws-foot { margin-top: clamp(1.6rem, 3vw, 2.4rem); display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; justify-content: space-between; color: var(--ink-soft); }
-
-  /* case studies + referral */
-  .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.2rem, 2.5vw, 2rem); }
-  @media (max-width: 780px) { .cases { grid-template-columns: 1fr; } }
-  .case { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--ground); display: flex; flex-direction: column; }
-  .case figure { margin: 0; aspect-ratio: 40 / 26; overflow: hidden; border-bottom: 1px solid var(--line); }
-  .case figure svg { display: block; width: 100%; height: 100%; }
-  .case-body { padding: clamp(1.4rem, 2.5vw, 2rem); display: flex; flex-direction: column; gap: 0.8rem; }
-  .case-body .k { font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: 0.1em; color: var(--accent); }
-  .case-body h3 { font-size: var(--step-1); }
-  .case-body p { color: var(--ink-soft); margin: 0; line-height: 1.55; }
-  .pull { margin: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: clamp(1.8rem, 4vw, 3rem); }
-  .pull blockquote { margin: 0; }
-  .pull blockquote p { font-size: var(--step-1); line-height: 1.6; color: var(--ink); margin: 0; max-width: 62ch; font-weight: 400; }
-  .pull figcaption { margin-top: 1.4rem; font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: 0.06em; color: var(--muted); }
-  .pull figcaption b { color: var(--ink-soft); font-weight: 500; }
-
-  /* dark band */
-  .band { background: var(--band); color: var(--band-ink); position: relative; overflow: hidden; }
-  .band .tris { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.75; pointer-events: none;
-    mask-image: linear-gradient(90deg, #000, transparent 36%, transparent 64%, #000);
-    -webkit-mask-image: linear-gradient(90deg, #000, transparent 36%, transparent 64%, #000);
-  }
-  .band .wrap { position: relative; text-align: center; padding-block: clamp(5rem, 11vw, 8.5rem); }
-  .band h2 { font-size: var(--step-2); color: var(--band-ink); max-width: 20ch; margin-inline: auto; line-height: 1.14; }
-  .band p { color: var(--band-muted); max-width: 46ch; margin: 1.6rem auto 0; }
-
-  /* about */
-  .cred { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.5rem; }
-  .cred li { border-top: 1px solid var(--line); padding-top: 1.3rem; }
-  .cred li:first-child { border-top: none; padding-top: 0; }
-  .cred-k { display: block; font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.55rem; }
-  .cred li p { margin: 0; color: var(--ink-soft); line-height: 1.55; }
-  .cred li strong { color: var(--ink); font-weight: 500; }
-  .about-lead p { font-size: var(--step-1); line-height: 1.5; color: var(--ink-soft); margin: 0; font-weight: 400; }
-
-  /* contact */
-  .contact { text-align: center; }
-  .contact .sec-head { margin-inline: auto; max-width: none; }
-  .contact h2 { font-size: var(--step-3); }
-  .contact p { color: var(--ink-soft); max-width: 44ch; margin: 1.1rem auto 2rem; }
-
-  /* footer */
-  footer { border-top: 1px solid var(--line); }
-  .foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 2.2rem; }
-  .foot .fbrand { display: inline-flex; align-items: center; gap: 0.55rem; }
-  .foot .fbrand .word { font-size: 0.98rem; letter-spacing: -0.03em; }
-  .foot .fbrand .word .tld { color: var(--muted); }
-  .foot .meta { font-family: var(--f-sans); font-size: 0.92rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; }
-  .foot .meta a { color: var(--ink-soft); text-decoration: none; }
-  .foot .meta a:hover { color: var(--ink); }
-  /* ---------- in-place editor ---------- */
-  .az-editing { padding-block-end: 132px; }
-  .az-editing [data-az-edit] { cursor: text; outline: 1px dashed transparent; outline-offset: 4px; border-radius: 2px; transition: outline-color .15s; }
-  .az-editing [data-az-edit]:hover { outline-color: var(--accent-soft); }
-  .az-editing [data-az-edit]:focus { outline: 2px solid var(--accent); outline-offset: 4px; }
-  .az-editing .band [data-az-edit]:hover { outline-color: var(--band-muted); }
-  .az-editing .band [data-az-edit]:focus { outline-color: var(--band-ink); }
-  .az-editing [data-az-edit]:empty { padding-inline: 1ch; outline-color: var(--accent-soft); }
-  .az-editing a { cursor: text; }
-  .az-editing .btn:hover, .az-editing .btn:hover .arrow { transform: none; }
-
-  .az-pill, .az-bar, .az-toast {
-    position: fixed; z-index: 60; font-family: var(--f-sans); color-scheme: dark;
-    background: var(--band); color: var(--band-ink); border: 1px solid var(--band-line);
-    box-shadow: 0 18px 48px -18px rgba(0, 0, 0, .55);
-  }
-  .az-pill {
-    right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    display: inline-flex; align-items: center; gap: .55rem;
-    padding: .6rem 1.05rem; border-radius: 999px; font-size: .92rem; font-weight: 450; cursor: pointer;
-  }
-  .az-pill:hover { border-color: var(--band-muted); }
-  .az-badge { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .04em; padding: .12rem .5rem; border-radius: 999px; background: var(--band-ink); color: var(--band); }
-  .az-bar {
-    left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    width: max-content; max-width: calc(100% - 32px); padding: .55rem .6rem .5rem; border-radius: 16px;
-  }
-  .az-row { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; }
-  .az-field { display: inline-flex; align-items: center; gap: .45rem; padding-left: .4rem; }
-  .az-lbl { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .12em; color: var(--band-muted); }
-  #az-view { font: inherit; font-size: .88rem; color: var(--band-ink); background: var(--band); border: 1px solid var(--band-line); border-radius: 8px; padding: .3rem .45rem; cursor: pointer; }
-  .az-sep { width: 1px; align-self: stretch; margin: .2rem .3rem; background: var(--band-line); }
-  .az-fmt { min-width: 2.1rem; height: 2.1rem; padding: 0 .5rem; border-radius: 8px; border: 1px solid transparent; background: transparent; color: var(--band-ink); font: inherit; font-size: .95rem; cursor: pointer; }
-  .az-fmt:hover { border-color: var(--band-line); }
-  .az-fmt-word { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .06em; color: var(--band-muted); }
-  .az-fmt-word:hover { color: var(--band-ink); }
-  .az-status { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .05em; color: var(--band-muted); padding: 0 .45rem; max-width: 36ch; }
-  .az-status.is-dirty { color: var(--band-ink); }
-  .az-btn { font: inherit; font-size: .88rem; font-weight: 450; padding: .45rem .95rem; border-radius: 999px; border: 1px solid var(--band-line); cursor: pointer; white-space: nowrap; }
-  .az-ghost { background: transparent; color: var(--band-ink); }
-  .az-ghost:hover { border-color: var(--band-muted); }
-  .az-primary { background: var(--band-ink); color: var(--band); border-color: var(--band-ink); }
-  .az-primary:hover { opacity: .9; }
-  .az-btn:disabled { opacity: .4; cursor: default; }
-  .az-x { width: 2.1rem; height: 2.1rem; border: 0; border-radius: 999px; background: transparent; color: var(--band-muted); font-size: 1.3rem; line-height: 1; cursor: pointer; }
-  .az-x:hover { color: var(--band-ink); }
-  .az-hint { margin: .45rem .5rem .1rem; font-size: .75rem; color: var(--band-muted); }
-  .az-toast {
-    left: 50%; transform: translateX(-50%); bottom: calc(76px + env(safe-area-inset-bottom, 0px));
-    max-width: calc(100% - 32px); display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
-    padding: .6rem .7rem .6rem 1.1rem; border-radius: 16px; font-size: .9rem;
-  }
-  .az-pill:focus-visible, .az-bar button:focus-visible, #az-view:focus-visible, .az-toast button:focus-visible { outline: 2px solid var(--band-ink); outline-offset: 2px; }
-  @media (max-width: 640px) {
-    .az-hint { display: none; }
-    .az-bar { left: 16px; right: 16px; transform: none; width: auto; max-width: none; }
-  }
+  /* page editor (only on localhost): dashed outline on editable text, one small bar at bottom left */
+  .az-editing [contenteditable] { outline: 1px dashed var(--line-strong); outline-offset: 4px; cursor: text; }
+  .az-editing [contenteditable]:focus { outline: 1px solid var(--ink); }
+  .az-pill, .az-bar { position: fixed; left: 20px; bottom: 20px; z-index: 60; background: var(--ink); color: var(--white); }
+  .az-pill { font: inherit; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; border: 0; padding: 10px 14px; cursor: pointer; }
+  .az-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; }
+  .az-bar button { font: inherit; font-size: 12px; text-transform: uppercase; background: transparent; color: var(--white); border: 1px solid var(--white); padding: 6px 10px; cursor: pointer; }
+  .az-bar .az-status { max-width: 40ch; font-size: 12px; opacity: .8; }
 </style>
+<style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,#onetap_google_intermediate_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,.adthrive-auto-injected-player-container,.adthrive[id^="cls-video-container"]:has(.adthrive-auto-injected-player-container),#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,#onetap_google_intermediate_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,.adthrive-auto-injected-player-container,.adthrive[id^="cls-video-container"]:has(.adthrive-auto-injected-player-container),#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,#onetap_google_intermediate_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,.adthrive-auto-injected-player-container,.adthrive[id^="cls-video-container"]:has(.adthrive-auto-injected-player-container),#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,#onetap_google_intermediate_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,.adthrive-auto-injected-player-container,.adthrive[id^="cls-video-container"]:has(.adthrive-auto-injected-player-container),#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,#onetap_google_intermediate_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,.adthrive-auto-injected-player-container,.adthrive[id^="cls-video-container"]:has(.adthrive-auto-injected-player-container),#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style></head>
+<body class="">
 
-<template id="az-page">
+<div class="strip up">In-person AI tool workshops for companies · Get in touch to book a workshop for your team</div>
+
 <header>
-  <div class="wrap nav">
-    <a class="brand" href="#/" aria-label="a-zero.ai home">
-      <svg class="mark" viewBox="0 0 120 88" aria-hidden="true">
-        <polygon points="6,14 112,26 70,44" fill="var(--ink)"></polygon>
-        <polygon points="6,14 70,44 40,52" fill="var(--muted)"></polygon>
-        <polygon points="112,26 70,44 58,82" fill="var(--ink-soft)"></polygon>
-        <polygon points="70,44 58,82 40,52" fill="var(--line-strong)"></polygon>
-      </svg>
-      <span class="word">a-zero<span class="tld">.ai</span></span>
-    </a>
-    <nav class="nav-links" aria-label="primary">
-      <a href="#/blog">reports</a>
-      <a href="#/workshops">workshops</a>
-      <a href="#/about">about</a>
-      <a class="nav-cta" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20consultation">request a consultation</a>
+  <div class="wrap head">
+    <nav class="left up" aria-label="primary">
+      <a href="#workshops">Workshops</a>
+      <a href="#/advisory">Advisory</a>
+      <a href="#/about">About</a>
     </nav>
+    <a class="wordmark" href="#/" aria-label="a-zero.ai home">
+      <svg viewBox="0 0 120 88" aria-hidden="true"><polygon points="6,14 112,26 70,44" fill="#17191D"></polygon><polygon points="6,14 70,44 40,52" fill="#868B93"></polygon><polygon points="112,26 70,44 58,82" fill="#40444C"></polygon><polygon points="70,44 58,82 40,52" fill="#D2D4DA"></polygon></svg>
+      <span>a<span class="zero">0</span></span>
+    </a>
+    <nav class="right up" aria-label="contact"><button class="link arrow" type="button" popovertarget="msgbox"><span class="for-workshop">Book a workshop</span><span class="for-advisory">Request advisory</span></button></nav>
   </div>
 </header>
 
-<!-- ============================== HOME ============================== -->
-<main id="view-home">
+<main id="top" hidden="">
 
-  <section class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
-        <g fill="none" stroke="var(--line)" stroke-width="1">
-          <polygon points="120,80 420,20 300,240"></polygon>
-          <polygon points="1050,120 1180,360 860,300"></polygon>
-          <polygon points="200,520 520,600 340,420"></polygon>
-          <polygon points="900,540 1200,480 1120,600"></polygon>
-        </g>
-      </svg>
+  <div class="wrap">
+    <div class="hero-text">
+      <h1>Company focused hands-on AI tool workshops.</h1>
+      <p>In person and interactive. We teach professionals and teams to leverage their organization's AI tools to their full potential.</p>
     </div>
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">strategy · data governance · intelligence</span>
-        <h1>frontier intelligence<br><span class="dim">in the age of AI.</span></h1>
-        <p class="lead">Strategic advisory for AI usage. </p>
-        <div class="cta-row">
-          <a class="btn" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20consultation">request a consultation <span class="arrow">→</span></a>
-          <a class="btn ghost" href="#/blog">reports</a>
-        </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 460 320">
-          <defs>
-            <linearGradient id="fTop" x1="0" y1="0" x2="1" y2="0.5">
-              <stop offset="0" stop-color="var(--surface-2)"></stop><stop offset="1" stop-color="var(--accent-soft)"></stop>
-            </linearGradient>
-            <linearGradient id="fMid" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="var(--muted)"></stop><stop offset="1" stop-color="var(--ink-soft)"></stop>
-            </linearGradient>
-            <linearGradient id="fLow" x1="0" y1="0" x2="0.6" y2="1">
-              <stop offset="0" stop-color="var(--ink-soft)"></stop><stop offset="1" stop-color="var(--ink)"></stop>
-            </linearGradient>
-            <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="26" stdDeviation="22" flood-color="#000" flood-opacity="0.16"></feDropShadow>
-            </filter>
-          </defs>
-          <path class="trail" d="M40,286 C150,286 150,150 300,120" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"></path>
-          <g class="plane-anim">
-            <g class="bobber" filter="url(#soft)">
-              <polygon class="facet" points="60,150 418,70 250,150" fill="url(#fTop)"></polygon>
-              <polygon class="facet" points="60,150 250,150 170,196" fill="url(#fMid)"></polygon>
-              <polygon class="facet" points="418,70 250,150 214,250" fill="url(#fMid)"></polygon>
-              <polygon class="facet" points="250,150 214,250 170,196" fill="url(#fLow)"></polygon>
-              <line x1="418" y1="70" x2="214" y2="250" stroke="var(--ground)" stroke-width="1.4" opacity="0.35"></line>
-            </g>
-          </g>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- SPECTRUM -->
-  <section class="bordered" id="spectrum">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">intelligence</span>
-        <h2>bringing context.</h2>
-        <p>We offer a diagnosis of the enterprise's operational processes, creating a memo-based report of the most important AI considerations for your leadership team.</p>
-      </div>
-      <ul class="spec">
-        <li>
-          <div class="row">
-            <div>
-              <span class="eyebrow">01 · Landscape Analysis</span>
-              <h3>Understand the new landscape.</h3>
-            </div>
-            <div>
-              <p class="desc">How AI is reshaping your business sector and the operations it now makes possible, assessed against your organization's position.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div>
-              <span class="eyebrow">02 · Strategic Implications</span>
-              <h3>Translate intelligence into priorities.</h3>
-            </div>
-            <div>
-              <p class="desc">Key findings presented into a ranked set of decisions: what to act on now, what to monitor, and what can wait, with the tradeoffs made explicit.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div>
-              <span class="eyebrow">03 · Data Management</span>
-              <h3>Set terms for your data.</h3>
-            </div>
-            <div>
-              <p class="desc">Threat surface are changing. Understand where your data and IP meet these exposures, so you can set the terms.</p>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow" style="justify-content:center; display:flex;">in confidence</span>
-        <h2>Let's dive in</h2>
-        <p>Describe your inquiries regarding data governance, AI threats and decision support.</p>
-        <a class="btn" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20in%20confidence">start a conversation <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ============================== WORKSHOPS ============================== -->
-<main id="view-workshops" hidden="">
-
-  <section class="svc-hero">
-    <div class="wrap">
-      <a class="crumb" href="#/">← a-zero.ai</a>
-      <span class="eyebrow" style="display:flex;">Workshops</span>
-      <h1>Understanding AI Systems</h1>
-      <p class="lead">Develop a practical understanding of AI system capabilities, limitations, data flows, and governance considerations that shape powerful and responsible use. For leadership and teams that need to understand how to make the most of AI with security in mind. No technical experience assumed.</p>
-      <div class="who">
-        <div><b>For</b>Leaders and teams evaluating AI use</div>
-        <div><b>Focus</b>Systems, data, risk, and governance</div>
-        <div><b>Outcome</b>A shared basis for informed decisions</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="tinted track">
-    <div class="wrap">
-      <div class="track-head">
-        <span class="eyebrow">Workshop Structure</span>
-        <h2>A practical understanding of AI. </h2>
-        <p>Participants examine how AI systems produce outputs, what information they rely on, and where uncertainty and exposure enter. The workshop moves from system fundamentals to information flows, then to evaluation and oversight, followed up by solving organizational use cases with existing internal tools.</p>
-        <div class="who">
-          <div><b>Format</b>Facilitated hands on workshop grounded in organizational use cases</div>
-          <div><b>Participants</b>Decision-makers and multidisciplinary teams</div>
-        </div>
-      </div>
-      <div class="offer-list">
-        <article class="offer-item">
-          <span class="k">01 · System Fundamentals</span>
-          <h3>Capabilities and limitations</h3>
-          <p>Build a working model of how AI systems generate outputs, where their capabilities are useful, and how limitations and uncertainty affect reliance on them.</p>
-        </article>
-        <article class="offer-item">
-          <span class="k">02 · Data and Context</span>
-          <h3>Data, context, and exposure</h3>
-          <p>Trace how information enters a system and is used; identify where confidentiality, intellectual property, ownership, and access require attention.</p>
-        </article>
-        <article class="offer-item">
-          <span class="k">03 · Evaluation and Oversight</span>
-          <h3>Evidence before reliance</h3>
-          <p>Determine how to evaluate system behavior, where human review remains necessary, and how responsibilities should be assigned before and after implementation.</p>
-        </article>
-      </div>
-      <div class="ws-foot">
-        <em style="font-style:normal;">The outcome objective is a shared, accurate understanding that supports sound organizational decisions around AI implementation.</em>
-      </div>
-    </div>
-  </section>
-
-  <section class="band">
-    <div class="wrap">
-      <span class="eyebrow" style="color:var(--accent-soft); justify-content:center; display:flex;">get started</span>
-      <h2>Develop a sound basis for AI decisions.</h2>
-      <p>Discuss a workshop for your leadership and technical teams.</p>
-      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20AI%20systems%20workshop">Request workshop details <span class="arrow">→</span></a></p>
-    </div>
-  </section>
-
-</main>
-
-<template>
-
-  <section class="svc-hero">
-    <div class="wrap">
-      <a class="crumb" href="#/">← a-zero.ai</a>
-      <span class="eyebrow" style="display:flex;">data governance consulting</span>
-      <h1>Make data accountable, protected, and useful.</h1>
-      <p class="lead">We help organizations establish clear data ownership, classification, access, and stewardship. The work connects policy to day-to-day decisions, so teams can protect sensitive information, meet obligations, and use data with confidence.</p>
-      <div class="who">
-        <div><b>who it's for</b>organizations clarifying data accountability and controls</div>
-        <div><b>starting point</b>data assets, obligations, risks, and current practices</div>
-        <div><b>outcome</b>practical governance guidance teams can maintain</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split">
-      <div>
-        <span class="eyebrow">areas of focus</span>
-        <h2>Governance designed around the data and the people responsible for it.</h2>
-        <p class="tagline" style="font-family:var(--f-mono); font-size:var(--step--1); letter-spacing:.14em; color:var(--muted); margin-top:1rem;">classify · assign · govern</p>
-      </div>
-      <div>
-        <ul class="caps">
-          <li><span><b>Data classification</b> — establish useful categories based on sensitivity, business value, and obligations.</span></li>
-          <li><span><b>Ownership and stewardship</b> — clarify who is accountable for data quality, access, and appropriate use.</span></li>
-          <li><span><b>Access and use</b> — define practical rules for who can use data, for which purposes, and under what conditions.</span></li>
-          <li><span><b>Policy and controls</b> — align data practices with organizational commitments, legal requirements, and risk tolerance.</span></li>
-          <li><span><b>Governance operating model</b> — set decision rights, escalation paths, and review responsibilities.</span></li>
-          <li><span><b>Implementation guidance</b> — translate governance principles into clear recommendations, priorities, and next steps.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="tinted">
-    <div class="wrap split">
-      <div>
-        <span class="eyebrow">the engagement</span>
-        <h2>Make governance clear enough to use.</h2>
-        <div class="body" style="margin-top:1.2rem;">
-          <p>Governance has to work across real roles, systems, and decisions. We assess current practices, identify gaps and points of friction, then shape guidance that fits the organization rather than adding process for its own sake.</p>
-          <p><strong>The result is clear accountability and practical direction</strong> — not a policy document disconnected from the work.</p>
-        </div>
-      </div>
-      <ol class="steps">
-        <li><span class="n">01 · assess</span><p><b>Understand the current state.</b> Review data assets, existing policies, responsibilities, and obligations.</p></li>
-        <li><span class="n">02 · prioritize</span><p><b>Focus on material risks.</b> Identify unclear ownership, inconsistent classification, and access or use questions that need decisions.</p></li>
-        <li><span class="n">03 · design</span><p><b>Set practical rules.</b> Recommend categories, decision rights, controls, and stewardship practices suited to the organization.</p></li>
-        <li><span class="n">04 · guide</span><p><b>Give teams a path forward.</b> Present recommendations, sequencing, and responsibilities in a form leaders and teams can act on.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="bordered">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">governance foundations</span>
-        <h2>Make the responsibilities visible.</h2>
-      </div>
-      <div class="cases">
-        <article class="case">
-          <figure aria-hidden="true">
-            <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="cs1a" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="var(--surface-2)"></stop><stop offset="1" stop-color="var(--accent-soft)"></stop>
-                </linearGradient>
-                <linearGradient id="cs1b" x1="0" y1="0" x2="0.6" y2="1">
-                  <stop offset="0" stop-color="var(--muted)"></stop><stop offset="1" stop-color="var(--ink-soft)"></stop>
-                </linearGradient>
-              </defs>
-              <rect width="400" height="260" fill="var(--surface)"></rect>
-              <g stroke="var(--line)" stroke-width="1" fill="none">
-                <polygon points="20,40 150,10 110,120"></polygon>
-                <polygon points="330,220 400,180 390,260"></polygon>
-              </g>
-              <g>
-                <polygon points="120,50 290,38 300,200 130,214" fill="url(#cs1a)"></polygon>
-                <polygon points="120,50 290,38 208,120" fill="var(--surface-2)" opacity="0.75"></polygon>
-                <line x1="150" y1="95" x2="270" y2="88" stroke="var(--muted)" stroke-width="4" opacity="0.55"></line>
-                <line x1="150" y1="120" x2="262" y2="114" stroke="var(--muted)" stroke-width="4" opacity="0.4"></line>
-                <line x1="150" y1="145" x2="270" y2="139" stroke="var(--muted)" stroke-width="4" opacity="0.3"></line>
-                <line x1="150" y1="170" x2="230" y2="166" stroke="var(--muted)" stroke-width="4" opacity="0.2"></line>
-                <polygon points="255,140 335,96 300,208 268,196" fill="url(#cs1b)"></polygon>
-                <polygon points="300,208 268,196 276,226" fill="var(--accent)"></polygon>
-              </g>
-            </svg>
-          </figure>
-          <div class="case-body">
-            <span class="k">classification &amp; access</span>
-            <h3>Know what data you hold and who can use it.</h3>
-            <p>Establish meaningful data categories, assess sensitivity, and define access expectations according to role, purpose, and risk.</p>
-          </div>
-        </article>
-        <article class="case">
-          <figure aria-hidden="true">
-            <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="cs2a" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="var(--accent-soft)"></stop><stop offset="1" stop-color="var(--ink-soft)"></stop>
-                </linearGradient>
-              </defs>
-              <rect width="400" height="260" fill="var(--surface)"></rect>
-              <g stroke="var(--line)" stroke-width="1" fill="none">
-                <polygon points="200,130 320,60 330,200"></polygon>
-                <polygon points="200,130 80,50 60,180"></polygon>
-                <polygon points="200,130 140,240 290,235"></polygon>
-              </g>
-              <polygon points="200,130 340,58 352,148" fill="url(#cs2a)" opacity="0.5"></polygon>
-              <g fill="var(--muted)">
-                <polygon points="84,52 100,44 96,64"></polygon>
-                <polygon points="318,62 334,54 330,74"></polygon>
-                <polygon points="62,178 78,170 74,190"></polygon>
-                <polygon points="288,232 304,224 300,244"></polygon>
-                <polygon points="142,238 158,230 154,250"></polygon>
-              </g>
-              <g fill="var(--accent)">
-                <polygon points="192,120 216,116 210,142 188,138"></polygon>
-                <polygon points="252,96 266,92 262,108"></polygon>
-                <polygon points="150,180 164,176 160,192"></polygon>
-              </g>
-            </svg>
-          </figure>
-          <div class="case-body">
-            <span class="k">ownership &amp; stewardship</span>
-            <h3>Make accountability part of the model.</h3>
-            <p>Clarify data ownership, stewardship responsibilities, and decision rights so governance can be maintained as the organization changes.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="bordered">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">client referral</span>
-      </div>
-      <figure class="pull">
-        <blockquote>
-          <p>“Working with blackbox has been an absolute game changer for our company. They bring a unique ability to quickly identify inefficiencies and provide clear, actionable solutions that have allowed us to scale our operations significantly. The insights and clarity provided have filled gaps we didn’t even know existed, enabling growth at a level we hadn’t previously been able to reach. Their sharp understanding of complex systems, combined with his problem-solving mindset, makes them an invaluable asset. On top of that, the team is fantastic to work with; professional, collaborative, and genuinely committed to helping teams succeed. I highly recommend working with blackbox if you're looking to elevate your business through strategic AI implementation and operational efficiency.”</p>
-        </blockquote>
-        <figcaption>— client referral · engagement delivered under <b>Blackbox</b>, an earlier name of a-zero.ai</figcaption>
+    <div class="trip">
+      <figure>
+        <img src="images/tall-2.jpg" alt="A team seated together in a bright room during a session" width="800" height="1067">
+        <figcaption><a class="up link arrow" href="#toolkit">The AI Toolkit</a><span class="muted up">01</span></figcaption>
       </figure>
+      <figure>
+        <img src="images/tall-3.jpg" alt="Four colleagues discussing around a wooden table" width="800" height="1067">
+        <figcaption><a class="up link arrow" href="#decisions">AI for Executive Decisions</a><span class="muted up">02</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/workshop-room.jpg" alt="A team working on laptops around a long table in a bright room, sticky notes on a whiteboard behind them" width="770" height="572">
+        <figcaption><a class="up link arrow" href="#generative">Building with large language models</a><span class="muted up">03</span></figcaption>
+      </figure>
+    
     </div>
-  </section>
+  </div>
 
-  <section class="band">
+  <section id="approach">
     <div class="wrap">
-      <span class="eyebrow" style="color:var(--accent-soft); justify-content:center; display:flex;">get started</span>
-      <h2>Bring us your data governance questions.</h2>
-      <p>We’ll help clarify the responsibilities, risks, and decisions that need attention.</p>
-      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20data%20governance">discuss governance <span class="arrow">→</span></a></p>
-    </div>
-  </section>
-
-</template>
-
-<!-- ============================== BLOG ============================== -->
-<main id="view-blog" hidden="">
-<section id="report-data-security" class="bordered">
-  <section class="svc-hero">
-    <div class="wrap article-shell">
-      <a class="crumb" href="#/">← a-zero.ai</a>
-      <div class="article-kicker">article 01 · data security</div>
-      <h1>The changing landscape of data security in the age of AI.</h1>
-      <div class="article-meta">
-        <span>october 2026</span>
-        <span>by a-zero.ai</span>
-        <span>7 min read</span>
+      <div class="row">
+        <span class="up">The approach</span>
+        <div class="body">
+          <p class="lead">Most teams use a fraction of what their AI tools can do. Our workshops focus on understanding how the tools work, so people know the key elements and can use them to full effect.</p>
+          <div class="points">
+            <div><span class="up">In person, interactive</span><p>A practical, hands on approach with your own models.</p></div>
+            <div><span class="up">Full use of the tools</span><p>Participants learn the techniques and features that move a tool from occasional help to everyday leverage.</p></div>
+            <div><span class="up">Understanding first</span><p>Knowing how the tools work under the hood and the methods that make them reliable or hallucinate.</p></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap article-shell article-body">
-      <p>AI is changing the architecture of the enterprise. A company is no longer just a collection of teams and assets; it is a system of knowledge, decisions, permissions, and trust. When AI compresses the time between insight and action, the assumptions that once governed data protection and strategic advantage begin to fray.</p>
+  <section id="workshops">
+    <div class="wrap">
+      <div class="row"><span class="up">Workshops</span><p class="muted up">Three workshops · In person · No technical experience needed</p></div>
 
-      <p>This is unmistakably visible in the changing landscape of data security. The traditional model assumed that valuable information could be protected through access controls, legal frameworks, and the opacity of internal operations. That assumption is increasingly fragile. Intellectual property is harder to defend, competitors can study behavior more efficiently, and product patterns are more easily reverse engineered than before. The market is forcing a stark reality: advantage is determined less by what a company possesses than by how quickly it can adapt, govern, and reconfigure its own operating system.</p>
+      <article class="ws" id="toolkit">
+        <figure>
+          <img src="images/workshop-2.jpg" alt="A team gathered in a bright room during a workshop session" width="1100" height="800">
+          <figcaption class="up muted">Workshop 01</figcaption>
+        </figure>
+        <div>
+          <span class="up">Workshop 01</span>
+          <h2>The AI Toolkit.</h2>
+          <p class="intro">Participants learn to gather and leverage data, design context that produces reliable output, and build repeatable workflows with the tools they already use.</p>
+          <dl class="facts">
+            <div><dt class="up">For</dt><dd>Professionals using AI tools in their daily work.</dd></div>
+            <div><dt class="up">Format</dt><dd>Hands-on, built around participants' own tasks.</dd></div>
+            <div><dt class="up">Outcome</dt><dd>Practical skills and tools that augment their abilities.</dd></div>
+          </dl>
+          <div class="modules">
+            <div><span class="up muted">01 · Context Engineering</span><h3>Master the context.</h3><p>Write clear instructions, supply reference material and examples, and set up reusable project contexts that produce consistent, verifiable results.</p></div>
+            <div><span class="up muted">02 · Data Guidance</span><h3>It's all about data.</h3><p>The process of finding and curating information sources to feed the AI for data-driven results.</p></div>
+            <div><span class="up muted">03 · Evaluation</span><h3>Benchmark, evaluate, repeat.</h3><p>Match tools to tasks, check output quality, turn one-off prompts into repeatable workflows, and recognize when a task should not go to AI at all.</p></div>
+          </div>
+          <p class="goal"><br></p>
+        </div>
+      </article>
 
-      <p>That is why data governance is no longer a compliance issue. It is a strategic discipline. As AI accelerates the rate of change, businesses must decide which knowledge is genuinely proprietary, which systems should be exposed to AI, which decisions must remain human, and how to operationalize those boundaries without slowing the organization below market and 'security' speed.</p>
+      <article class="ws" id="decisions">
+        <figure>
+          <img src="images/workshop-3.jpg" alt="Four colleagues discussing around a wooden table" width="1100" height="800">
+          <figcaption class="up muted">Workshop 02</figcaption>
+        </figure>
+        <div>
+          <span class="up">Workshop 02</span>
+          <h2>AI for Executive Decisions.</h2>
+          <p class="intro">Leadership works through real organizational problems with AI: framing the question, using AI to research, analyze, and test options, then turning the findings into decisions. The workshop builds a working method leaders can reuse with the organization's tools.</p>
+          <dl class="facts">
+            <div><dt class="up">For</dt><dd>Executives and decision-makers, no technical experience assumed.</dd></div>
+            <div><dt class="up">Format</dt><dd>Facilitated, hands-on, built on organizational case studies.</dd></div>
+            <div><dt class="up">Outcome</dt><dd>AI augmented decisions framework.</dd></div>
+          </dl>
+          <div class="modules">
+            <div><span class="up muted">01 · Framing</span><h3>Define the right problem.</h3><p>Turn a business or operational question into precise context, by questioning the assumptions and considering pertinent data sources.</p></div>
+            <div><span class="up muted">02 · Problem Solving</span><h3>Work the problem with AI.</h3><p>Use AI to research, model scenarios, compare options, and stress-test assumptions on live organizational problems.</p></div>
+            <div><span class="up muted">03 · Decision</span><h3>From analysis to decision.</h3><p>Weigh AI-assisted findings against your own domain knowledge, assess the evidence, and keep judgment and accountability where they belong: with leadership.</p></div>
+          </div>
+          <p class="goal"><br></p>
+        </div>
+      </article>
 
-      <blockquote>
-        “The security landscape is shifting faster than ever — enterprises are under attack from a growing range of sources, while many are still using old models of protection that no longer match today’s threat environment.”
-        <br><br>
-        — IBM Security, on the accelerating need to update enterprise security strategy in the AI era.
-      </blockquote>
-
-      <p>IBM’s framing is useful because it points to a broader truth: security is no longer just about preventing intrusion. It is about protecting the integrity of the operating context itself. In a world where AI can analyze patterns, synthesize capabilities, and accelerate reverse engineering, the real question is not just whether information is protected. It is whether the company has a defensible way to decide what matters, how it is accessed, and how it is transformed into advantage.</p>
-
-      <h2>AI is accelerating the decay of old strategic assumptions</h2>
-
-      <p>Many organizations still think in terms of product differentiation, process advantages, and proprietary knowledge as if they were stable assets. But AI is changing the rate at which those advantages can be copied, decomposed, and reassembled. The market is increasingly defined by a wave of <strong>decomposition</strong>: capabilities once embedded inside a company’s workflows are becoming inspectable, portable, and replicable at scale. That does not make every competitive advantage obsolete. It changes where advantage resides.</p>
-
-      <p>What becomes valuable is not simply “having the secret.” It is the ability to <strong>structure the business intelligently</strong>: to organize knowledge, define decision rights, govern data access, and design the workflows that allow AI to create value without eroding trust. In a market where IP is harder to contain and competitors can move quickly, strategic advantage increasingly comes from the quality of the operating system behind the business.</p>
-
-      <h2>Data security is no longer the perimeter problem — it is the business design problem</h2>
-
-      <p>Many companies are still optimizing for the old model of security: lock down systems, restrict access, deploy controls, and hope the internal environment remains hard to navigate. But AI changes the operating equation. The decisions that matter are now split across data access, workflow design, tool selection, retrieval architecture, and governance rules. If those parts are not designed deliberately, AI becomes either unsafe or strategically shallow. It becomes a risk multiplier.</p>
-
-      <ul>
-        <li>What data is classified as decision-critical versus merely accessible?</li>
-        <li>Which workflows are safe to augment with AI, and which require human authority?</li>
-        <li>Which tools genuinely create leverage versus create exposure?</li>
-        <li>How do you preserve strategic integrity while enabling speed?</li>
-      </ul>
-
-      <p>The companies that win will not be the ones with the most dashboards or the most AI experiments. They will be the ones that make decisive data-management choices early — and that understand the current rate of change as a structural challenge to their business model, not simply a technical implementation challenge.</p>
-
-      <h2>Strategy has to move faster than the market</h2>
-
-      <p>The real shift is this: businesses can no longer assume that competitive advantage is protected by opacity alone. The current market conditions demand operational clarity. They require a sharper understanding of where value is created, what truly must remain private, what should be systemized, and how AI can improve decision quality without eroding trust.</p>
-
-      <p>That is the leadership challenge now. AI is not a mere tool; it is an accelerant. When the market changes this quickly, slow governance becomes a strategic liability. New business strategies are required: clearer ownership, more deliberate data management, tighter operational mapping, and stronger alignment between intelligence and execution. New businesses need to be more agile than ever.</p>
-
-      <p>In other words, the business must reorganize itself around the fact that AI is changing the operating environment. The question is no longer whether the organization will adapt. It is whether it will adapt in a way that protects its strategic position while capturing the opportunity created by the new market conditions.</p>
+      <article class="ws" id="generative">
+        <figure>
+          <img src="images/workshop-room.jpg" alt="A team working on laptops around a long table in a bright room, sticky notes on a whiteboard behind them" width="770" height="572">
+          <figcaption class="up muted">Workshop 03</figcaption>
+        </figure>
+        <div>
+          <span class="up">Workshop 03</span>
+          <h2>Building with large language models.</h2>
+          <p class="intro">In this experimental, fully hands-on workshop, teams are guided from idea or question to a working demo, internal tool, front-end or dashboard, learning the frontier techniques to meet their outcome goals.</p>
+          <dl class="facts">
+            <div><dt class="up">For</dt><dd>Teams or individuals with an idea, question or process to turn into a proof of concept.</dd></div>
+            <div><dt class="up">Format</dt><dd>Experimental and guided, built around your objectives.</dd></div>
+            <div><dt class="up">Outcome</dt><dd>A robust prototype and the techniques to build the next one.</dd></div>
+          </dl>
+          <div class="modules">
+            <div><span class="up muted">01 · Frontier techniques</span><h3>Start from what works.</h3><p>A curated set of the techniques that hold up to the most advanced LLM capabilities.</p></div>
+            <div><span class="up muted">02 · Building</span><h3>From idea to working tool.</h3><p>Guided step by step, assessing the mental frameworks and building a solid ground for decisions.</p></div>
+            <div><span class="up muted">03 · Verification</span><h3>Convincing is not correct.</h3><p>Test what was built, understand the model's blind spots, limitations, and map the road from a working demo to a final product.</p></div>
+          </div>
+          <p class="goal"><br></p>
+        </div>
+      </article>
     </div>
   </section>
-</section>
-<section id="report-ai-market" class="bordered">
-  <section class="svc-hero">
-    <div class="wrap article-shell">
-      <a class="crumb" href="#/">← a-zero.ai</a>
-      <div class="article-kicker">article 02 · ai strategy</div>
-      <h1>AI is compressing the software stack. What that changes, operationally.</h1>
-      <div class="article-meta">
-        <span>october 2026</span>
-        <span>by a-zero.ai</span>
-        <span>5 min read</span>
+
+  <section>
+    <div class="wrap">
+      <div class="row quote">
+        <span class="up">From the community</span>
+        <div class="body">
+          <blockquote>“Working with blackbox has been an absolute game changer for our company. They bring a unique ability to quickly identify inefficiencies and provide clear, actionable solutions that have allowed us to scale our operations significantly. The insights and clarity provided have filled gaps we didn’t even know existed, enabling growth at a level we hadn’t previously been able to reach. Their sharp understanding of complex systems, combined with a problem-solving mindset, makes them an invaluable asset. On top of that, the team is fantastic to work with; professional, collaborative, and genuinely committed to helping teams succeed. I highly recommend working with blackbox if you're looking to elevate your business through strategic AI implementation and operational efficiency.”</blockquote>
+          <cite class="up muted">One Pro Sports Management</cite>
+        </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap article-shell article-body">
-      <p>Capabilities that once required separate applications are consolidating into general-purpose models. Writing, research, analysis, light design, and a growing share of workflow orchestration can now be done inside one interface. This is a drastic change in the software market, and it is must be treated as an urgent operational question: which of the tools an organization relies on are becoming interchangeable, which are not, and what that means for the information flowing through them.</p>
 
-      <h2>What is being compressed</h2>
-
-      <p>The clearest signal is in orchestration. Services such as Zapier and n8n connect applications through predefined triggers and steps. Tool protocols such as MCP let a model call external services directly. As models get better at following context and carrying out multi-step tasks, some of the orchestration that needed a visual workflow can be expressed as an instruction to a model. The same applies to features that are easy to describe: summarize this, draft that, extract these fields. A feature that can be stated in a sentence can often be reproduced in a sentence.</p>
-
-      <p>Two consequences follow. Prompt engineering has stopped being a distinct skill; clear instructions, well-designed context, and evaluation have not. And retrieval-augmented generation is no longer needed for small, stable collections that fit reliably in context, though it remains the right pattern for large, changing, permission-sensitive corpora where provenance matters.</p>
-
-      <h2>What is not</h2>
-
-      <p>Model capability is not product replacement. Established software provides records, permissions, audit trails, predictable behavior, support, and accountability. A model can reproduce a feature without reproducing any of that. A word processor gaining a natural-language interface is a change in interface, not evidence that the product or its market has gone.</p>
-
-      <p>Software advantages are being repriced. Features are more exposed. Durable value sits in distribution, trusted relationships, domain expertise, regulatory capability, reliable execution, and information that competitors cannot reproduce and that can be used lawfully. Workflow platforms lose some surface-level use cases and keep their value as integration, monitoring, and control layers.</p>
-
-      <h2>What it means for the data you hold</h2>
-
-      <p>If features are becoming cheap and governed information is not, the practical question is which information an organization holds that qualifies. Not all of it does. Volume is not a moat. Information is an asset when it is distinctive, accurate, current, legally usable, and connected to decisions or operations that matter. The same information becomes a liability when ownership is unclear, access is broader than it needs to be, retention is uncontrolled, or sensitive material reaches systems without suitable protections.</p>
-
-      <p>More capable models also change the analysis on both sides: they assist defensive review, and they lower the cost of finding weaknesses. That does not mean every organization faces an imminent incident. It means exposure should be assessed on the data actually held, the systems it moves through, and the consequences of its loss or misuse, rather than on general sentiment about AI.</p>
-
-      <h2>A working sequence</h2>
-
-      <ul>
-        <li>Inventory the information that supports differentiation: operational knowledge, customer relationships, research, processes.</li>
-        <li>Record where each category lives, who owns it, who can reach it, and under which terms it may be used.</li>
-        <li>Trace the routes by which it reaches AI tools and third-party services: prompts, uploads, integrations, fine-tuning, logs.</li>
-        <li>Evaluate tools on what they retain and expose, not only on what they can do. Records, permissions, logging, and failure handling matter more than feature lists.</li>
-        <li>Keep retrieval systems and workflow platforms where scale, change, permissions, or citations require them. Let them go where a well-specified instruction does the job.</li>
-        <li>Set protection proportionate to sensitivity, legal obligation, competitive value, and the cost of loss. Restricting everything restricts useful work.</li>
-      </ul>
-
-      <h2>Four claims, tested</h2>
-
-      <ul>
-        <li><strong>“RAG is obsolete.”</strong> Overstated. Large, dynamic, permissioned, or citation-dependent collections still need search and access control.</li>
-        <li><strong>“Workflow tools are finished.”</strong> Some workflows will collapse into model-native interaction. Production systems still need integration, observability, permissions, failure handling, and repeatability.</li>
-        <li><strong>“Protect everything.”</strong> No organization can remove all exposure without also restricting useful work.</li>
-        <li><strong>“Proprietary data guarantees a moat.”</strong> Only if it is accurate, usable, and governed. Otherwise it is mostly risk.</li>
-      </ul>
-
-      <p>The objective is deliberate control rather than maximum restriction: protect the information whose loss would materially weaken the organization, and keep the ability to learn, operate, and adapt. As software features become easier to reproduce, this kind of data governance is part of strategy, not an administrative step added after deployment.</p>
-    </div>
-  </section>
-</section>
-<section id="report-agentic" class="bordered">
-  <section class="svc-hero">
-    <div class="wrap article-shell">
-      <a class="crumb" href="#/">← a-zero.ai</a>
-      <div class="article-kicker">article 03 · agentic security</div>
-      <h1>Why agents leak data: a review of the network principles they break.</h1>
-      <div class="article-meta">
-        <span>october 2026</span>
-        <span>by a-zero.ai</span>
-        <span>6 min read</span>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap article-shell article-body">
-      <p>An agent is a program that reads untrusted input, holds credentials, and makes network requests chosen at runtime by a model. Each of those is familiar to network security. Combined, they break principles the field settled decades ago. Most agent data leaks are not novel attacks. They are old failure modes, reintroduced by architecture.</p>
-
-      <h2>The core problem: no separation of control and data</h2>
-
-      <p>Telephone networks once carried control signals in the same channel as the voice, and anyone who could play the right tone could control the switch. The fix was out-of-band signalling. Language models are in-band by construction: instructions and data arrive as the same tokens. A web page, an email, a PDF, or a tool result can contain text the model treats as an instruction. This is prompt injection, and it ranks first in the OWASP Top 10 for LLM Applications. No reliable model-level filter exists. It has to be contained architecturally.</p>
-
-      <p>The containment rule is best stated as a combination to avoid. An agent becomes an exfiltration path when one session has all three of:</p>
-
-      <ul>
-        <li><strong>Access to private data</strong>: files, mailboxes, databases, internal tools.</li>
-        <li><strong>Exposure to untrusted content</strong>: web pages, inbound email, shared documents, third-party tool output.</li>
-        <li><strong>A way to communicate outward</strong>: HTTP requests, sending messages, opening pull requests, even rendering an image URL.</li>
-      </ul>
-
-      <p>Remove any one and injected instructions have nowhere to take the data. This combination is often called the lethal trifecta.</p>
-
-      <h2>Seven patterns that make agents unsafe</h2>
-
-      <ul>
-        <li><strong>Unrestricted egress.</strong> An agent that can fetch any URL can send data anywhere: in a query string, a request body, a DNS lookup, or a Markdown image the client renders automatically. Default-allow outbound traffic is the most common leak path.</li>
-        <li><strong>Ambient, over-scoped credentials.</strong> Long-lived tokens with broad scopes, often a shared service account, let any injected instruction act with the agent's full authority. This is the confused-deputy problem: the agent is authorized, the intent is not.</li>
-        <li><strong>Server-side request forgery.</strong> A fetch tool running inside the network can reach what the user cannot: internal admin panels, unauthenticated services, and the cloud metadata endpoint at 169.254.169.254, which can hand out instance credentials.</li>
-        <li><strong>Implicit trust in local services.</strong> Tool servers bound to 0.0.0.0, or to localhost without checking the Host and Origin headers, are reachable by other machines or by any web page through DNS rebinding.</li>
-        <li><strong>Flat trust between tools.</strong> Tool descriptions are read by the model, so a malicious or compromised tool server can instruct the agent to misuse other tools. Servers can also change their tool definitions after approval. Combining several tool servers in one session joins their trust domains.</li>
-        <li><strong>Secrets in the context window.</strong> API keys pasted into prompts, environment dumps, and verbose tool output put credentials where an injected instruction can read them back, and into logs and traces held by third parties.</li>
-        <li><strong>No audit or limits.</strong> Tool calls that are not logged with their inputs and outputs cannot be investigated. Without rate limits or a kill switch, a misdirected agent runs until someone notices.</li>
-      </ul>
-
-      <h2>Principles to hold to</h2>
-
-      <ul>
-        <li><strong>Deny egress by default.</strong> Route agent traffic through a proxy with a domain allowlist. Block private address ranges and metadata endpoints. Do not auto-render images or links from model output.</li>
-        <li><strong>Break the trifecta per session.</strong> A session that reads untrusted content should not hold private data and an outbound channel at the same time. Split the work across agents with different permissions, and pass only structured, validated data between them.</li>
-        <li><strong>Least privilege, short-lived credentials.</strong> Scope tokens to the task and the user, not to the agent platform. Expire them in minutes, not months.</li>
-        <li><strong>Keep secrets out of the model.</strong> Inject credentials at the proxy or tool layer so the model never sees them.</li>
-        <li><strong>Authenticate every hop.</strong> Use OAuth or mTLS between agents and tool servers. Bind local servers to loopback and validate Host and Origin.</li>
-        <li><strong>Pin and review tools.</strong> Treat tool servers as dependencies: pin versions, review descriptions, alert on changes, and isolate untrusted servers in separate sessions.</li>
-        <li><strong>Require approval for consequential actions.</strong> Sending data out, deleting, paying, or changing permissions should wait for a human, shown the exact action and payload.</li>
-        <li><strong>Log, limit, contain.</strong> Record every tool call. Rate-limit actions. Run agents in sandboxed environments with no lateral network reach, and keep a way to stop them.</li>
-      </ul>
-
-      <h2>Where to start</h2>
-
-      <p>Inventory every agent and AI integration in use, including those adopted informally. For each, record what data it can read, what untrusted content it ingests, and where it can send traffic. Any entry with all three is the first priority. Most of the fix is ordinary network discipline applied to a new kind of client: deny by default, scope tightly, authenticate everything, and log what happens.</p>
-    </div>
-  </section>
-</section>
 </main>
 
-<!-- ============================== ABOUT ============================== -->
-<main id="view-about" hidden="">
-  <section class="svc-hero">
-    <div class="wrap">
-      <a class="crumb" href="#/">← a-zero.ai</a>
-      <span class="eyebrow" style="display:flex;">About</span>
-      <h1>Rooted in understanding.</h1>
-      <p class="lead">My view is that implementation without understanding leads to uncertainty. A successful outcome happens when the client leaves with a greater understanding of AI as a system, and its relationship to their internal operations and business landscape.</p>
-    </div>
-  </section>
-
+<main id="advisory-page">
   <section>
-    <div class="wrap split">
-      <div>
-        <span class="eyebrow">background</span>
-        <h2>about me</h2>
-      </div>
-      <div class="body">
-        <p>Over the last two years, I have been consulting for teams navigating the AI reorganization. I have built a practical understanding of the AI landscape by helping teams across many different contexts strategize on the ways to stay ahead operationally with the advancements brought forth by the technology.</p>
-        <p>Previously, I conducted technical due diligence at seriesOne, a FINRA-registered digital-securities platform, reviewing system architecture and technical documentation.</p>
-        <p>I also played soccer professionally in Canada and Europe. Performing in high-stakes environments has taught me priceless lessons on preparation, accountability and using judgement under pressure. I've also learned the value of highly intentional cultures in the pursuit of common goals.</p>
-        <p>I hold a B.S. in Information Sciences from the University of Michigan, where I concentrated in data modeling, big data analysis and fintech research.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="band">
     <div class="wrap">
-      <span class="eyebrow" style="color:var(--accent-soft); justify-content:center; display:flex;">get started</span>
-      <h2>Discuss a strategic question.</h2>
-      <p>For inquiries regarding AI risk, data governance, and decision support.</p>
-      <p style="margin-top:2rem;"><a class="btn" style="background:var(--band-ink); color:var(--band); border-color:var(--band-ink);" href="mailto:samake.ag@gmail.com?subject=a-zero.ai%20—%20consultation">Request a consultation <span class="arrow">→</span></a></p>
+      <article class="ws">
+        <span class="up muted">Operations · AI STRATEGY · Analysis</span>
+        <div>
+          <h2>Navigate the AI changes</h2>
+          <p class="intro">We offer a diagnosis of the enterprise's operational processes, creating an actionable&nbsp; report of the most important AI considerations for your leadership team. The work is broken down into three segments: an understanding of your operations, the changing landscape, and the priorities it implies. All of our engagements are confidential and terms are defined based on the scope.</p>
+          <div class="modules">
+            <div><span class="up muted">01 · Operational Understanding</span><h3>Map how the business runs.</h3><p>A systematic breakdown of your operations to understand the processes that drive the organization forward and where the bottlenecks are.&nbsp;</p></div>
+            <div><span class="up muted">02 · Landscape Analysis</span><h3>Understand the changing landscape.</h3><p>How AI is reshaping your business sector and the operations it now makes possible, assessed against your organization's position.</p></div>
+            <div><span class="up muted">03 · Strategic Implications</span><h3>Translate intelligence into priorities.</h3><p>Key findings presented as a ranked set of decisions: what to act on now, what to monitor, and what can wait, with the tradeoffs made explicit.</p></div>
+          </div>
+          <p class="goal"><a class="up link arrow" href="mailto:info@a-zero.ai?subject=Advisory%20inquiry">Request a consultation</a></p>
+        </div>
+      </article>
+
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap foot">
-    <span class="fbrand">
-      <svg class="mark" viewBox="0 0 120 88" aria-hidden="true" style="width:26px;height:19px;">
-        <polygon points="6,14 112,26 70,44" fill="var(--ink)"></polygon>
-        <polygon points="6,14 70,44 40,52" fill="var(--muted)"></polygon>
-        <polygon points="112,26 70,44 58,82" fill="var(--ink-soft)"></polygon>
-        <polygon points="70,44 58,82 40,52" fill="var(--line-strong)"></polygon>
-      </svg>
-      <span class="word">a-zero<span class="tld">.ai</span></span>
-    </span>
-    <span class="meta">
-      <a href="#/blog">reports</a>
-      <a href="#/workshops">workshops</a>
-      <a href="#/about">about</a>
-    </span>
+<main id="about-page" hidden="">
+  <section>
+    <div class="wrap">
+      <div class="about">
+        <figure><img src="images/about.jpg" alt="" width="1000" height="800"></figure>
+        <div class="text">
+          <p class="lead" style="margin-top:0">I help organizations put AI to work, without losing control of their data, budget, or judgment.</p>
+          <p>My philosophy with AI is that implementation without understanding creates uncertainty, and unreliable systems. What makes AI useful is primarily the clarity of your thinking. I work in that manner, helping teams understand what's going on, how the tools work, and what they do. Efficiency and speed are a byproduct of that process.</p>
+          <h3 class="up">Background</h3>
+          <p>I hold a B.S. in Information from the University of Michigan (2019), where I combined Data Sciences and Python on one side, with human-computer interaction and usability on the other. The through-line: technology and people must always be considered equally in a system.</p>
+          <p>At seriesOne, a FINRA-registered digital-securities platform, I was Senior Analyst, where I performed due diligence on prospective issuers, drafted technical documents, and worked directly with C-suite teams on product development.</p>
+          <p>Since then I have built and deployed agent-based systems that streamline operations for teams and make processes more efficient.</p>
+          <p>Before consulting I was a professional footballer in Canada's first division. I also played in the NCAA Division 1 for one of the most prestigious schools in the United States. My experience at the highest level of athletics taught me how to tackle big problems with a clear mind, under pressure, as part of a team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="row foot">
+      <span class="up">Contact</span>
+      <div class="foot-main">
+        <div>
+          <p>Let's talk.</p>
+        </div>
+        <button class="launch up" type="button" popovertarget="msgbox"><span class="for-workshop">Book a workshop</span><span class="for-advisory">Request advisory</span></button>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span class="wordmark" aria-label="a-zero"><svg viewBox="0 0 120 88" aria-hidden="true"><polygon points="6,14 112,26 70,44" fill="#17191D"></polygon><polygon points="6,14 70,44 40,52" fill="#868B93"></polygon><polygon points="112,26 70,44 58,82" fill="#40444C"></polygon><polygon points="70,44 58,82 40,52" fill="#D2D4DA"></polygon></svg><span>a-zero</span></span>
+      <small>© 2026 a-zero.ai · All rights reserved.</small>
+    </div>
   </div>
 </footer>
-</template>
 
-<script id="az-boot">
-(function () {
-  "use strict";
-  /* The page's markup lives in <template id="az-page">, its canonical source.
-     It is stamped into the page here; the editor rebuilds the published
-     document from the template, never from the live DOM. */
-  var tpl = document.getElementById("az-page");
-  document.body.appendChild(tpl.content.cloneNode(true));
 
-  var VIEWS = ["view-home", "view-blog", "view-workshops", "view-about"];
-  var ROUTES = {
-    "#/blog": "view-blog",
-    "#/workshops": "view-workshops",
-    "#/about": "view-about"
-  };
-  var pending = null;
-  function route() {
-    var active = ROUTES[location.hash] || "view-home";
-    VIEWS.forEach(function (id) { document.getElementById(id).hidden = (id !== active); });
-    if (active !== "view-home") { window.scrollTo(0, 0); return; }
-    if (pending) {
-      var el = document.getElementById(pending);
-      pending = null;
-      if (el) { el.scrollIntoView(); return; }
+<!-- ponytail: FormSubmit relays the message by email (GitHub Pages has no backend); swap the action for your own endpoint if volume or privacy needs grow -->
+<div id="msgbox" popover="" role="dialog" aria-labelledby="msgbox-title">
+  <div class="msg-head"><span class="up" id="msgbox-title"><span class="for-workshop">Book a workshop</span><span class="for-advisory">Request advisory</span></span><button type="button" popovertarget="msgbox" popovertargetaction="hide" aria-label="Close">×</button></div>
+  <form class="msg" action="https://formsubmit.co/info@a-zero.ai" method="POST">
+    <input type="hidden" name="_subject" value="Workshop inquiry · a-zero.ai">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" data-ddg-inputtype="unknown">
+    <label><span class="up">Name</span><input name="name" required="" maxlength="100" autocomplete="name" data-ddg-inputtype="identities.fullName" data-ddg-autofill="true"></label>
+    <label><span class="up">Email</span><input name="email" type="email" required="" maxlength="200" autocomplete="email" data-ddg-inputtype="identities.emailAddress" data-ddg-autofill="true"></label>
+    <label><span class="up">Message</span><textarea name="message" rows="4" required="" maxlength="4000" placeholder="Tell us about your workshop objectives."></textarea></label>
+    <button type="submit" class="arrow">Send</button>
+    <p class="status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  (function () {
+    var S = { sending: "Sending…", thanks: "Thank you. Your message has been sent.", err: 'Couldn\'t send just now. Please email <a class="link" href="mailto:info@a-zero.ai">info@a-zero.ai</a>.' };
+
+    var pages = { "#/advisory": "advisory-page", "#/about": "about-page" };
+    var mains = document.querySelectorAll("main");
+    function route() {
+      if (location.hash === "#contact") return;              // footer is on every page
+      var page = pages[location.hash] || "top";
+      document.documentElement.setAttribute("data-page", page);
+      mains.forEach(function (m) { m.hidden = m.id !== page; });
+      var target = page === "top" && location.hash.length > 2 && document.getElementById(location.hash.slice(1));
+      if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
     }
-    window.scrollTo(0, 0);
-  }
-  window.addEventListener("hashchange", route);
+    window.addEventListener("hashchange", route);
+    route();
 
-  /* jump to a section of the HOME view, from anywhere */
-  document.querySelectorAll("a[data-goto]").forEach(function (a) {
-    a.addEventListener("click", function (e) {
-      var t = a.getAttribute("data-goto");
-      if (ROUTES[location.hash]) { pending = t; return; }
+    // "Book a workshop" opens the message box, ready to type
+    var box = document.getElementById("msgbox"), form = box.querySelector(".msg");
+    var status = form.querySelector(".status"), send = form.querySelector("[type=submit]");
+    box.addEventListener("toggle", function (e) { if (e.newState === "open") form.elements.name.focus(); });
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var el = document.getElementById(t);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
+      form.elements["_subject"].value = document.documentElement.getAttribute("data-page") === "advisory-page"
+        ? "Advisory request · a-zero.ai" : "Workshop inquiry · a-zero.ai";
+      send.disabled = true;
+      status.textContent = S.sending;
+      fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      }).then(function (r) { return r.json(); }).then(function (d) {
+        if (String(d.success) !== "true") throw new Error(d.message);
+        form.reset();
+        status.textContent = S.thanks;
+      }).catch(function () {   // keep what they typed; give them the direct route
+        status.innerHTML = S.err;
+      }).finally(function () { send.disabled = false; });
     });
-  });
-
-  /* jump to a section inside the CURRENT view */
-  document.querySelectorAll("a[data-scroll]").forEach(function (a) {
-    a.addEventListener("click", function (e) {
-      e.preventDefault();
-      var el = document.getElementById(a.getAttribute("data-scroll"));
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
-
-  route();
-})();
+  })();
 </script>
-
-<script id="az-editor">
+<script id="az-edit">
 (function () {
   "use strict";
-    /* Edits are applied to a copy of the canonical template, then downloaded
-      as a complete HTML file. The live DOM is never serialized. */
-  var tpl = document.getElementById("az-page");
-  if (!tpl) return;
-
-  /* Editing goes through serve.mjs (http://localhost:5050), which saves straight
-     into index.html. Opened as a file, hop over to it; on the public site, no editor. */
-  var SERVER = "http://localhost:5050/";
-  var viaServer = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  /* Local only: "Edit page" makes the text editable and Save writes index.html through serve.mjs.
+     Only serve.mjs stamps the az-version meta, so the editor shows only where saving works; the public site never runs it.
+     Opened as a file, hop over to the server if it's running. */
+  var SERVER = "http://localhost:5051/";
   if (location.protocol === "file:") {
     fetch(SERVER, { mode: "no-cors", cache: "no-store" }).then(function () { location.replace(SERVER + location.hash); }, function () {});
-  } else if (!viaServer) return;
+    return;
+  }
+  if (!document.querySelector('meta[name="az-version"]')) return;
 
-  /* Text blocks that can be edited. A candidate is kept only if everything
-     inside it is inline text formatting, so links, buttons-in-paragraphs and
-     SVG can never be damaged by an edit. */
-  var EDITABLE = [
-    "h1", "h2", "h3", "p", ".eyebrow", ".brand .word", ".fbrand .word",
-    ".nav-links a", ".foot .meta a", ".crumb", ".btn",
-    ".who > div", ".caps li > span",
-    ".steps .n", ".offer-item .k", ".case-body .k", ".cred-k",
-    ".ws-foot em", ".pull figcaption"
-  ].join(",");
-  var INLINE = { B: 1, STRONG: 1, I: 1, EM: 1, BR: 1, SPAN: 1 };
-  var KEEP_CLASS = { dim: 1, arrow: 1, tld: 1 };
-  var STASH = "az-editor-v1";
+  var TARGETS = "h1,h2,h3,p,dt,dd,blockquote,cite,figcaption,nav a,.strip,.wordmark span,small,span.up,span.muted";
+  var editing = false, els = [], pill, bar, status;
 
-  var live = [], twins = [], base = [], liveRoots = [];
-  var dirty = {}, editing = false;
-  var ui = {}, stashTimer = null, discardTimer = null;
-
-  /* ---------- pairing live blocks with their source in the template ---------- */
-  function editableIn(root) {
-    var picked = [];
-    Array.prototype.forEach.call(root.querySelectorAll(EDITABLE), function (el) {
-      var kids = el.querySelectorAll("*");
-      for (var i = 0; i < kids.length; i++) if (!INLINE[kids[i].tagName]) return;
-      for (var j = 0; j < picked.length; j++) if (picked[j].contains(el)) return;
-      picked.push(el);
-    });
-    return picked;
-  }
-  function collect(rootList) {
-    var all = [];
-    rootList.forEach(function (r) { all = all.concat(editableIn(r)); });
-    return all;
-  }
-  function pairUp() {
-    var bootScript = document.getElementById("az-boot");
-    var n = bootScript && bootScript.nextElementSibling;
-    while (n && n.id !== "az-editor") { liveRoots.push(n); n = n.nextElementSibling; }
-    var twinRoots = Array.prototype.slice.call(tpl.content.children);
-    if (liveRoots.length !== twinRoots.length) return false;
-    for (var k = 0; k < twinRoots.length; k++) if (liveRoots[k].tagName !== twinRoots[k].tagName) return false;
-    live = collect(liveRoots);
-    twins = collect(twinRoots);
-    if (!live.length || live.length !== twins.length) return false;
-    base = twins.map(clean);
-    return true;
-  }
-
-  /* ---------- turning an edited block back into clean markup ---------- */
-  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-  function clean(node) {
-    var out = "";
-    Array.prototype.forEach.call(node.childNodes, function (n) {
-      if (n.nodeType === 3) { out += esc(n.nodeValue.replace(/ /g, " ")); return; }
-      if (n.nodeType !== 1) return;
-      var t = n.tagName;
-      if (t === "BR") { out += "<br>"; return; }
-      if (t === "B" || t === "STRONG" || t === "I" || t === "EM") {
-        var tag = t.toLowerCase(), inner = clean(n);
-        if (inner) out += "<" + tag + ">" + inner + "<\/" + tag + ">";
-        return;
-      }
-      if (t === "SPAN" && KEEP_CLASS[n.className]) {
-        out += "<span class=\"" + n.className + "\">" + clean(n) + "<\/span>";
-        return;
-      }
-      out += clean(n); /* anything else (stray spans, divs, fonts): keep the text, drop the wrapper */
-    });
-    return out;
-  }
-
-  /* ---------- rebuilding the document from source ---------- */
-  function buildDocument() {
-    var holder = document.createElement("template");
-    holder.content.appendChild(tpl.content.cloneNode(true));
-    var copies = collect(Array.prototype.slice.call(holder.content.children));
-    if (copies.length !== live.length) throw new Error("page shape changed");
-    Object.keys(dirty).forEach(function (i) { copies[i].innerHTML = clean(live[i]); });
-    var title = document.querySelector("title");
-    var style = document.getElementById("az-style");
-    var boot = document.getElementById("az-boot");
-    var self = document.getElementById("az-editor");
-    return "<!doctype html>\n<html lang=\"en\">\n<head>\n" +
-      "<meta charset=\"utf-8\">\n" +
-      "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">\n" +
-      "<title>" + esc(title ? title.textContent : "a-zero.ai") + "<\/title>\n" +
-      "<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}<\/style>\n" +
-      "<\/head>\n<body>\n" +
-      "<style id=\"az-style\">" + style.textContent + "<\/style>\n\n" +
-      "<template id=\"az-page\">" + holder.innerHTML + "<\/template>\n\n" +
-      "<script id=\"az-boot\">" + boot.textContent + "<\/script>\n\n" +
-      "<script id=\"az-editor\">" + self.textContent + "<\/script>\n" +
-      "<\/body>\n<\/html>\n";
-  }
-
-  /* ---------- editor chrome ---------- */
-  function h(tag, attrs, html) {
-    var el = document.createElement(tag);
-    for (var k in attrs) el.setAttribute(k, attrs[k]);
-    if (html != null) el.innerHTML = html;
-    return el;
-  }
-  function buildChrome() {
-    ui.pill = h("button", { type: "button", "class": "az-pill", "aria-label": "Edit this page" },
-      "Edit page <span class=\"az-badge\" hidden><\/span>");
-    ui.badge = ui.pill.querySelector(".az-badge");
-    ui.bar = h("div", { "class": "az-bar", role: "toolbar", "aria-label": "Page editor", hidden: "" },
-      "<div class=\"az-row\">" +
-        "<label class=\"az-field\" for=\"az-view\"><span class=\"az-lbl\">page<\/span>" +
-          "<select id=\"az-view\">" +
-            "<option value=\"#/\">home<\/option>" +
-            "<option value=\"#/blog\">reports<\/option>" +
-            "<option value=\"#/workshops\">workshops<\/option>" +
-            "<option value=\"#/about\">about<\/option>" +
-          "<\/select><\/label>" +
-        "<span class=\"az-sep\" aria-hidden=\"true\"><\/span>" +
-        "<button type=\"button\" class=\"az-fmt\" data-cmd=\"bold\" title=\"Bold (Ctrl+B)\" aria-label=\"Bold\"><b>B<\/b><\/button>" +
-        "<button type=\"button\" class=\"az-fmt\" data-cmd=\"italic\" title=\"Italic (Ctrl+I)\" aria-label=\"Italic\"><i>I<\/i><\/button>" +
-        "<button type=\"button\" class=\"az-fmt az-fmt-word\" data-cmd=\"removeFormat\" title=\"Remove bold and italic from the selection\">plain<\/button>" +
-        "<span class=\"az-sep\" aria-hidden=\"true\"><\/span>" +
-        "<span class=\"az-status\" aria-live=\"polite\"><\/span>" +
-        "<button type=\"button\" class=\"az-btn az-ghost\" data-act=\"discard\">Discard<\/button>" +
-        "<button type=\"button\" class=\"az-btn az-primary\" data-act=\"save\">Save HTML…<\/button>" +
-        "<button type=\"button\" class=\"az-x\" data-act=\"close\" title=\"Close the editor\" aria-label=\"Close the editor\">&times;<\/button>" +
-      "<\/div>" +
-      "<p class=\"az-hint\">Click any text to edit it. Enter finishes, Shift+Enter adds a line break, Ctrl+S saves straight into index.html.<\/p>");
-    ui.status = ui.bar.querySelector(".az-status");
-    ui.save = ui.bar.querySelector("[data-act=\"save\"]");
-    ui.discard = ui.bar.querySelector("[data-act=\"discard\"]");
-    ui.view = ui.bar.querySelector("#az-view");
-    document.body.appendChild(ui.pill);
-    document.body.appendChild(ui.bar);
-
-    ui.pill.addEventListener("click", enterEdit);
-    ui.bar.addEventListener("mousedown", function (e) {
-      if (e.target.closest(".az-fmt")) e.preventDefault(); /* keep the text selection */
-    });
-    ui.bar.addEventListener("click", function (e) {
-      var f = e.target.closest(".az-fmt");
-      if (f) { format(f.getAttribute("data-cmd")); return; }
-      var b = e.target.closest("[data-act]");
-      if (!b) return;
-      var act = b.getAttribute("data-act");
-      if (act === "save") save();
-      else if (act === "discard") discard(b);
-      else if (act === "close") exitEdit();
-    });
-    ui.view.addEventListener("change", function () { location.hash = ui.view.value; });
-    window.addEventListener("hashchange", syncView);
-    syncView();
-    refresh();
-  }
-  function syncView() {
-    var hsh = location.hash;
-    ui.view.value = (hsh === "#/blog" || hsh === "#/workshops" || hsh === "#/about") ? hsh : "#/";
-  }
-  function count() { return Object.keys(dirty).length; }
-  function refresh() {
-    var n = count();
-    ui.status.textContent = n ? n + (n === 1 ? " change" : " changes") : "No changes";
-    ui.status.classList.toggle("is-dirty", n > 0);
-    ui.save.disabled = !n;
-    ui.discard.disabled = !n;
-    ui.badge.hidden = !n;
-    ui.badge.textContent = n ? n + " unsaved" : "";
-  }
-  function say(msg) { ui.status.textContent = msg; }
-
-  /* ---------- edit mode ---------- */
-  function enterEdit() {
-    if (editing) return;
-    if (!viaServer) { toast("To edit, start the editor: in VS Code, Terminal → Run Task → \"site editor\". This page then opens at localhost:5050."); return; }
+  function say(msg) { status.textContent = msg; }
+  function on() {
     editing = true;
     document.body.classList.add("az-editing");
-    live.forEach(function (el) {
-      el.setAttribute("contenteditable", "true");
-      el.setAttribute("data-az-edit", "");
-      el.setAttribute("spellcheck", "true");
+    els = Array.prototype.filter.call(document.querySelectorAll(TARGETS), function (el) {
+      return !el.closest("form,#msgbox,.launch,.az-edit-ui");
     });
-    liveRoots.forEach(function (r) {
-      Array.prototype.forEach.call(r.querySelectorAll("a[href]"), function (a) { a.setAttribute("draggable", "false"); });
-    });
-    try { document.execCommand("styleWithCSS", false, false); } catch (e) {}
-    ui.pill.hidden = true;
-    ui.bar.hidden = false;
-    refresh();
+    els.forEach(function (el) { el.setAttribute("contenteditable", "true"); el.setAttribute("spellcheck", "true"); });
+    pill.hidden = true; bar.hidden = false;
+    say("Click any text to edit. Save writes index.html.");
   }
-  function exitEdit() {
-    if (!editing) return;
-    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+  function off() {
     editing = false;
+    els.forEach(function (el) { el.removeAttribute("contenteditable"); el.removeAttribute("spellcheck"); });
     document.body.classList.remove("az-editing");
-    live.forEach(function (el) {
-      el.removeAttribute("contenteditable");
-      el.removeAttribute("data-az-edit");
-      el.removeAttribute("spellcheck");
-    });
-    liveRoots.forEach(function (r) {
-      Array.prototype.forEach.call(r.querySelectorAll("a[draggable]"), function (a) { a.removeAttribute("draggable"); });
-    });
-    ui.bar.hidden = true;
-    ui.pill.hidden = false;
-    refresh();
+    pill.hidden = false; bar.hidden = true;
   }
-  function hostIndex(node) {
-    var el = node && (node.nodeType === 1 ? node : node.parentElement);
-    el = el && el.closest("[data-az-edit]");
-    return el ? live.indexOf(el) : -1;
-  }
-  function markDirty(i) {
-    if (i < 0) return;
-    if (clean(live[i]) === base[i]) delete dirty[i]; else dirty[i] = true;
-    refresh();
-    stashSoon();
-  }
-  function format(cmd) {
-    var sel = window.getSelection();
-    var i = hostIndex(sel && sel.anchorNode);
-    if (i < 0) { say("Select some text first."); return; }
-    document.execCommand(cmd, false, null);
-    markDirty(i);
-  }
-  function discard(btn) {
-    if (!count()) return;
-    if (!discardTimer) {
-      btn.textContent = "Discard " + count() + "?";
-      discardTimer = setTimeout(function () { discardTimer = null; btn.textContent = "Discard"; }, 3000);
-      return;
-    }
-    clearTimeout(discardTimer);
-    discardTimer = null;
-    btn.textContent = "Discard";
-    Object.keys(dirty).forEach(function (i) { live[i].innerHTML = twins[i].innerHTML; });
-    dirty = {};
-    clearStash();
-    refresh();
-  }
-
-  function wire() {
-    document.addEventListener("input", function (e) {
-      if (editing) markDirty(hostIndex(e.target));
-    }, true);
-    document.addEventListener("keydown", function (e) {
-      if (!editing) return;
-      if ((e.ctrlKey || e.metaKey) && !e.altKey && (e.key === "s" || e.key === "S")) { e.preventDefault(); save(); return; }
-      var i = hostIndex(e.target);
-      if (i < 0) return;
-      if (e.key === "Enter") {
-        e.preventDefault();
-        if (e.shiftKey) { if (!document.execCommand("insertLineBreak")) document.execCommand("insertHTML", false, "<br>"); }
-        else live[i].blur();
-      } else if (e.key === "Escape") {
-        live[i].blur();
-      }
-    }, true);
-    document.addEventListener("paste", function (e) {
-      if (!editing || hostIndex(e.target) < 0) return;
-      e.preventDefault();
-      var text = e.clipboardData ? e.clipboardData.getData("text/plain") : "";
-      document.execCommand("insertText", false, text.replace(/\s*[\r\n]+\s*/g, " "));
-    }, true);
-    document.addEventListener("click", function (e) {
-      if (!editing || ui.bar.contains(e.target)) return;
-      var a = e.target.closest && e.target.closest("a[href]");
-      if (a) { e.preventDefault(); e.stopPropagation(); } /* while editing, clicking a link edits its text */
-    }, true);
-    function noDrag(e) { if (editing) e.preventDefault(); }
-    document.addEventListener("dragstart", noDrag, true);
-    document.addEventListener("drop", noDrag, true);
-  }
-
-  /* ---------- saving: serve.mjs writes index.html in place, then we reload to it ---------- */
   function save() {
-    if (!editing || !count()) return;
-    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
-    var html;
-    try { html = buildDocument(); } catch (e) { say("Couldn't assemble the page. Nothing was saved."); return; }
+    var clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll("[contenteditable],[spellcheck]").forEach(function (el) {
+      el.removeAttribute("contenteditable"); el.removeAttribute("spellcheck");
+    });
+    clone.querySelectorAll(".az-edit-ui").forEach(function (el) { el.remove(); });
+    clone.querySelector("body").classList.remove("az-editing"); // clone is an <html> element, not a document: it has no .body
+    var meta = clone.querySelector('meta[name="az-version"]');
+    var version = meta ? meta.content : "";
+    if (meta) meta.remove();
     say("Saving…");
-    fetch(location.pathname, { method: "PUT", body: html }).then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      stash(true);
-      location.reload();
-    }).catch(function () {
-      stash(false);
-      say("Couldn't save. Is serve.mjs still running? Your edits are kept here, so try again.");
-    });
+    fetch(location.pathname, { method: "PUT", body: "<!doctype html>\n" + clone.outerHTML, headers: { "X-Az-Version": version } })
+      .then(function (r) {
+        if (r.status === 409) { say("index.html changed since this page opened. Reload and edit again."); return; }
+        if (!r.ok) throw new Error(r.status);
+        location.reload();
+      })
+      .catch(function () { say("Couldn't save. Is serve.mjs still running?"); });
   }
 
-  /* ---------- keeping unsaved edits across a reload (this tab only) ---------- */
-  function stashSoon() { clearTimeout(stashTimer); stashTimer = setTimeout(function () { stash(false); }, 400); }
-  function stash(pending) {
-    clearTimeout(stashTimer);
-    try {
-      var edits = Object.keys(dirty).map(function (i) {
-        return { i: +i, orig: twins[i].textContent, html: clean(live[i]) };
-      });
-      if (!edits.length) { sessionStorage.removeItem(STASH); return; }
-      sessionStorage.setItem(STASH, JSON.stringify({ pending: !!pending, edits: edits }));
-    } catch (e) {}
-  }
-  function clearStash() {
-    clearTimeout(stashTimer);
-    try { sessionStorage.removeItem(STASH); } catch (e) {}
-  }
-  function toast(msg) {
-    var t = h("div", { "class": "az-toast", role: "status" });
-    t.textContent = msg;
-    document.body.appendChild(t);
-    setTimeout(function () { t.remove(); }, 4500);
-  }
-  function offer(msg, onYes, onNo) {
-    var t = h("div", { "class": "az-toast", role: "alertdialog", "aria-label": "Unsaved edits" });
-    var span = document.createElement("span");
-    span.textContent = msg;
-    var yes = h("button", { type: "button", "class": "az-btn az-primary" });
-    yes.textContent = "Restore";
-    var no = h("button", { type: "button", "class": "az-btn az-ghost" });
-    no.textContent = "Dismiss";
-    t.appendChild(span); t.appendChild(yes); t.appendChild(no);
-    document.body.appendChild(t);
-    yes.addEventListener("click", function () { t.remove(); onYes(); });
-    no.addEventListener("click", function () { t.remove(); onNo(); });
-  }
-  function restore() {
-    var s = null;
-    try { s = JSON.parse(sessionStorage.getItem(STASH) || "null"); } catch (e) {}
-    if (!s || !s.edits || !s.edits.length) return;
-    var todo = s.edits.filter(function (e) {
-      var el = live[e.i];
-      if (!el || clean(el) === e.html) return false; /* already live */
-      return el.textContent === e.orig;               /* still the text that was edited */
-    });
-    if (!todo.length) {
-      clearStash();
-      if (s.pending) toast("Saved. Your changes are in index.html.");
-      return;
-    }
-    offer(todo.length + (todo.length === 1 ? " unsaved edit" : " unsaved edits") + " from before the reload.",
-      function () {
-        enterEdit();
-        todo.forEach(function (e) { live[e.i].innerHTML = e.html; dirty[e.i] = true; });
-        refresh();
-        stash(false);
-      },
-      clearStash);
-  }
+  pill = document.createElement("button");
+  pill.type = "button"; pill.className = "az-edit-ui az-pill"; pill.textContent = "Edit page";
+  bar = document.createElement("div");
+  bar.className = "az-edit-ui az-bar"; bar.hidden = true;
+  bar.innerHTML = '<span class="az-status"></span><button type="button" data-act="save">Save</button><button type="button" data-act="close">Close</button>';
+  status = bar.querySelector(".az-status");
+  document.body.append(pill, bar);
 
-  if (!pairUp()) return;
-  buildChrome();
-  wire();
-  restore();
+  pill.addEventListener("click", on);
+  bar.addEventListener("click", function (e) {
+    var act = e.target.getAttribute("data-act");
+    if (act === "save") save();
+    if (act === "close") off();
+  });
+  document.addEventListener("click", function (e) {   // while editing, a click on a link edits its text instead
+    if (editing && e.target.closest("a[href]") && !e.target.closest(".az-edit-ui")) e.preventDefault();
+  }, true);
+  document.addEventListener("paste", function (e) {   // plain text only, on one line
+    if (!editing || !e.target.closest || !e.target.closest("[contenteditable]")) return;
+    e.preventDefault();
+    var text = (e.clipboardData || window.clipboardData).getData("text/plain");
+    document.execCommand("insertText", false, text.replace(/\s*[\r\n]+\s*/g, " "));
+  }, true);
+  document.addEventListener("keydown", function (e) {
+    if (!editing) return;
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") { e.preventDefault(); save(); return; }
+    // Enter finishes the edit instead of slipping a <div> or <br> into a heading
+    if (e.key === "Enter" && e.target.closest && e.target.closest("[contenteditable]")) { e.preventDefault(); e.target.blur(); }
+  });
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
